@@ -1,0 +1,301 @@
+date,centre,item,demand,stock,lead_time,criticality
+2026-01,Centre A,ORS,98,87,5,5
+2026-02,Centre A,ORS,125,104,5,5
+2026-03,Centre A,ORS,136,166,5,5
+2026-04,Centre A,ORS,146,118,5,5
+2026-05,Centre A,ORS,128,116,5,5
+2026-06,Centre A,ORS,118,115,5,5
+2026-07,Centre A,ORS,85,82,5,5
+2026-08,Centre A,ORS,101,117,5,5
+2026-09,Centre A,ORS,78,79,5,5
+2026-10,Centre A,ORS,71,76,5,5
+2026-11,Centre A,ORS,76,84,5,5
+2026-12,Centre A,ORS,98,58,5,5
+2026-01,Centre A,Antibiotic,65,54,7,5
+2026-02,Centre A,Antibiotic,83,113,7,5
+2026-03,Centre A,Antibiotic,84,101,7,5
+2026-04,Centre A,Antibiotic,88,93,7,5
+2026-05,Centre A,Antibiotic,87,71,7,5
+2026-06,Centre A,Antibiotic,74,99,7,5
+2026-07,Centre A,Antibiotic,76,75,7,5
+2026-08,Centre A,Antibiotic,55,61,7,5
+2026-09,Centre A,Antibiotic,48,66,7,5
+2026-10,Centre A,Antibiotic,55,69,7,5
+2026-11,Centre A,Antibiotic,60,51,7,5
+2026-12,Centre A,Antibiotic,63,25,7,5
+2026-01,Centre A,Diagnostic Kit,44,42,10,4
+2026-02,Centre A,Diagnostic Kit,47,60,10,4
+2026-03,Centre A,Diagnostic Kit,53,59,10,4
+2026-04,Centre A,Diagnostic Kit,56,49,10,4
+2026-05,Centre A,Diagnostic Kit,60,74,10,4
+2026-06,Centre A,Diagnostic Kit,57,71,10,4
+2026-07,Centre A,Diagnostic Kit,47,40,10,4
+2026-08,Centre A,Diagnostic Kit,39,51,10,4
+2026-09,Centre A,Diagnostic Kit,31,25,10,4
+2026-10,Centre A,Diagnostic Kit,40,39,10,4
+2026-11,Centre A,Diagnostic Kit,42,49,10,4
+2026-12,Centre A,Diagnostic Kit,38,41,10,4
+2026-01,Centre A,Bandage,147,192,3,2
+2026-02,Centre A,Bandage,152,187,3,2
+2026-03,Centre A,Bandage,150,123,3,2
+2026-04,Centre A,Bandage,152,186,3,2
+2026-05,Centre A,Bandage,157,144,3,2
+2026-06,Centre A,Bandage,141,188,3,2
+2026-07,Centre A,Bandage,174,211,3,2
+2026-08,Centre A,Bandage,123,108,3,2
+2026-09,Centre A,Bandage,138,127,3,2
+2026-10,Centre A,Bandage,152,207,3,2
+2026-11,Centre A,Bandage,147,195,3,2
+2026-12,Centre A,Bandage,144,115,3,2
+2026-01,Centre A,Pulse Oximeter,19,24,14,4
+2026-02,Centre A,Pulse Oximeter,21,19,14,4
+2026-03,Centre A,Pulse Oximeter,23,29,14,4
+2026-04,Centre A,Pulse Oximeter,25,33,14,4
+2026-05,Centre A,Pulse Oximeter,22,20,14,4
+2026-06,Centre A,Pulse Oximeter,20,21,14,4
+2026-07,Centre A,Pulse Oximeter,18,14,14,4
+2026-08,Centre A,Pulse Oximeter,15,16,14,4
+2026-09,Centre A,Pulse Oximeter,10,10,14,4
+2026-10,Centre A,Pulse Oximeter,11,11,14,4
+2026-11,Centre A,Pulse Oximeter,12,13,14,4
+2026-12,Centre A,Pulse Oximeter,15,9,14,4
+2026-01,Centre B,ORS,89,84,5,5
+2026-02,Centre B,ORS,102,124,5,5
+2026-03,Centre B,ORS,106,148,5,5
+2026-04,Centre B,ORS,118,113,5,5
+2026-05,Centre B,ORS,111,91,5,5
+2026-06,Centre B,ORS,104,104,5,5
+2026-07,Centre B,ORS,100,111,5,5
+2026-08,Centre B,ORS,85,90,5,5
+2026-09,Centre B,ORS,83,70,5,5
+2026-10,Centre B,ORS,73,74,5,5
+2026-11,Centre B,ORS,73,78,5,5
+2026-12,Centre B,ORS,73,58,5,5
+2026-01,Centre B,Antibiotic,55,71,7,5
+2026-02,Centre B,Antibiotic,67,66,7,5
+2026-03,Centre B,Antibiotic,81,65,7,5
+2026-04,Centre B,Antibiotic,79,87,7,5
+2026-05,Centre B,Antibiotic,76,68,7,5
+2026-06,Centre B,Antibiotic,61,74,7,5
+2026-07,Centre B,Antibiotic,62,54,7,5
+2026-08,Centre B,Antibiotic,51,51,7,5
+2026-09,Centre B,Antibiotic,45,53,7,5
+2026-10,Centre B,Antibiotic,47,60,7,5
+2026-11,Centre B,Antibiotic,53,50,7,5
+2026-12,Centre B,Antibiotic,64,25,7,5
+2026-01,Centre B,Diagnostic Kit,39,37,10,4
+2026-02,Centre B,Diagnostic Kit,45,54,10,4
+2026-03,Centre B,Diagnostic Kit,49,51,10,4
+2026-04,Centre B,Diagnostic Kit,50,66,10,4
+2026-05,Centre B,Diagnostic Kit,50,57,10,4
+2026-06,Centre B,Diagnostic Kit,48,49,10,4
+2026-07,Centre B,Diagnostic Kit,36,39,10,4
+2026-08,Centre B,Diagnostic Kit,31,33,10,4
+2026-09,Centre B,Diagnostic Kit,31,28,10,4
+2026-10,Centre B,Diagnostic Kit,28,28,10,4
+2026-11,Centre B,Diagnostic Kit,34,33,10,4
+2026-12,Centre B,Diagnostic Kit,38,15,10,4
+2026-01,Centre B,Bandage,107,123,3,2
+2026-02,Centre B,Bandage,134,185,3,2
+2026-03,Centre B,Bandage,141,149,3,2
+2026-04,Centre B,Bandage,134,135,3,2
+2026-05,Centre B,Bandage,146,192,3,2
+2026-06,Centre B,Bandage,138,129,3,2
+2026-07,Centre B,Bandage,146,184,3,2
+2026-08,Centre B,Bandage,112,92,3,2
+2026-09,Centre B,Bandage,106,102,3,2
+2026-10,Centre B,Bandage,106,140,3,2
+2026-11,Centre B,Bandage,112,128,3,2
+2026-12,Centre B,Bandage,93,37,3,2
+2026-01,Centre B,Pulse Oximeter,13,17,14,4
+2026-02,Centre B,Pulse Oximeter,15,14,14,4
+2026-03,Centre B,Pulse Oximeter,19,25,14,4
+2026-04,Centre B,Pulse Oximeter,18,21,14,4
+2026-05,Centre B,Pulse Oximeter,18,21,14,4
+2026-06,Centre B,Pulse Oximeter,17,23,14,4
+2026-07,Centre B,Pulse Oximeter,15,19,14,4
+2026-08,Centre B,Pulse Oximeter,11,13,14,4
+2026-09,Centre B,Pulse Oximeter,11,11,14,4
+2026-10,Centre B,Pulse Oximeter,11,10,14,4
+2026-11,Centre B,Pulse Oximeter,11,14,14,4
+2026-12,Centre B,Pulse Oximeter,13,16,14,4
+2026-01,Centre C,ORS,68,90,5,5
+2026-02,Centre C,ORS,81,66,5,5
+2026-03,Centre C,ORS,80,96,5,5
+2026-04,Centre C,ORS,103,102,5,5
+2026-05,Centre C,ORS,90,85,5,5
+2026-06,Centre C,ORS,82,67,5,5
+2026-07,Centre C,ORS,74,73,5,5
+2026-08,Centre C,ORS,51,66,5,5
+2026-09,Centre C,ORS,61,55,5,5
+2026-10,Centre C,ORS,51,53,5,5
+2026-11,Centre C,ORS,50,43,5,5
+2026-12,Centre C,ORS,64,51,5,5
+2026-01,Centre C,Antibiotic,52,50,7,5
+2026-02,Centre C,Antibiotic,51,54,7,5
+2026-03,Centre C,Antibiotic,55,49,7,5
+2026-04,Centre C,Antibiotic,66,58,7,5
+2026-05,Centre C,Antibiotic,59,72,7,5
+2026-06,Centre C,Antibiotic,47,56,7,5
+2026-07,Centre C,Antibiotic,49,57,7,5
+2026-08,Centre C,Antibiotic,48,50,7,5
+2026-09,Centre C,Antibiotic,34,42,7,5
+2026-10,Centre C,Antibiotic,31,25,7,5
+2026-11,Centre C,Antibiotic,36,30,7,5
+2026-12,Centre C,Antibiotic,49,63,7,5
+2026-01,Centre C,Diagnostic Kit,31,32,10,4
+2026-02,Centre C,Diagnostic Kit,32,37,10,4
+2026-03,Centre C,Diagnostic Kit,37,37,10,4
+2026-04,Centre C,Diagnostic Kit,40,47,10,4
+2026-05,Centre C,Diagnostic Kit,41,49,10,4
+2026-06,Centre C,Diagnostic Kit,36,32,10,4
+2026-07,Centre C,Diagnostic Kit,32,26,10,4
+2026-08,Centre C,Diagnostic Kit,26,29,10,4
+2026-09,Centre C,Diagnostic Kit,25,25,10,4
+2026-10,Centre C,Diagnostic Kit,25,29,10,4
+2026-11,Centre C,Diagnostic Kit,30,40,10,4
+2026-12,Centre C,Diagnostic Kit,23,25,10,4
+2026-01,Centre C,Bandage,87,83,3,2
+2026-02,Centre C,Bandage,106,98,3,2
+2026-03,Centre C,Bandage,103,120,3,2
+2026-04,Centre C,Bandage,107,107,3,2
+2026-05,Centre C,Bandage,97,117,3,2
+2026-06,Centre C,Bandage,114,114,3,2
+2026-07,Centre C,Bandage,95,115,3,2
+2026-08,Centre C,Bandage,76,76,3,2
+2026-09,Centre C,Bandage,89,100,3,2
+2026-10,Centre C,Bandage,83,87,3,2
+2026-11,Centre C,Bandage,99,122,3,2
+2026-12,Centre C,Bandage,102,40,3,2
+2026-01,Centre C,Pulse Oximeter,11,14,14,4
+2026-02,Centre C,Pulse Oximeter,15,19,14,4
+2026-03,Centre C,Pulse Oximeter,16,20,14,4
+2026-04,Centre C,Pulse Oximeter,15,12,14,4
+2026-05,Centre C,Pulse Oximeter,15,19,14,4
+2026-06,Centre C,Pulse Oximeter,14,13,14,4
+2026-07,Centre C,Pulse Oximeter,11,10,14,4
+2026-08,Centre C,Pulse Oximeter,10,13,14,4
+2026-09,Centre C,Pulse Oximeter,10,13,14,4
+2026-10,Centre C,Pulse Oximeter,10,13,14,4
+2026-11,Centre C,Pulse Oximeter,10,10,14,4
+2026-12,Centre C,Pulse Oximeter,11,12,14,4
+2026-01,Centre D,ORS,87,118,5,5
+2026-02,Centre D,ORS,114,144,5,5
+2026-03,Centre D,ORS,137,189,5,5
+2026-04,Centre D,ORS,129,156,5,5
+2026-05,Centre D,ORS,123,160,5,5
+2026-06,Centre D,ORS,113,119,5,5
+2026-07,Centre D,ORS,94,125,5,5
+2026-08,Centre D,ORS,74,65,5,5
+2026-09,Centre D,ORS,62,71,5,5
+2026-10,Centre D,ORS,72,94,5,5
+2026-11,Centre D,ORS,72,96,5,5
+2026-12,Centre D,ORS,88,114,5,5
+2026-01,Centre D,Antibiotic,62,78,7,5
+2026-02,Centre D,Antibiotic,73,82,7,5
+2026-03,Centre D,Antibiotic,84,72,7,5
+2026-04,Centre D,Antibiotic,81,88,7,5
+2026-05,Centre D,Antibiotic,80,66,7,5
+2026-06,Centre D,Antibiotic,72,62,7,5
+2026-07,Centre D,Antibiotic,67,83,7,5
+2026-08,Centre D,Antibiotic,53,60,7,5
+2026-09,Centre D,Antibiotic,51,49,7,5
+2026-10,Centre D,Antibiotic,51,67,7,5
+2026-11,Centre D,Antibiotic,52,43,7,5
+2026-12,Centre D,Antibiotic,57,62,7,5
+2026-01,Centre D,Diagnostic Kit,41,57,10,4
+2026-02,Centre D,Diagnostic Kit,46,56,10,4
+2026-03,Centre D,Diagnostic Kit,58,78,10,4
+2026-04,Centre D,Diagnostic Kit,52,71,10,4
+2026-05,Centre D,Diagnostic Kit,53,45,10,4
+2026-06,Centre D,Diagnostic Kit,47,47,10,4
+2026-07,Centre D,Diagnostic Kit,45,46,10,4
+2026-08,Centre D,Diagnostic Kit,34,31,10,4
+2026-09,Centre D,Diagnostic Kit,31,29,10,4
+2026-10,Centre D,Diagnostic Kit,28,30,10,4
+2026-11,Centre D,Diagnostic Kit,40,38,10,4
+2026-12,Centre D,Diagnostic Kit,33,42,10,4
+2026-01,Centre D,Bandage,139,146,3,2
+2026-02,Centre D,Bandage,155,210,3,2
+2026-03,Centre D,Bandage,145,186,3,2
+2026-04,Centre D,Bandage,145,201,3,2
+2026-05,Centre D,Bandage,149,153,3,2
+2026-06,Centre D,Bandage,128,176,3,2
+2026-07,Centre D,Bandage,134,144,3,2
+2026-08,Centre D,Bandage,126,132,3,2
+2026-09,Centre D,Bandage,116,152,3,2
+2026-10,Centre D,Bandage,114,146,3,2
+2026-11,Centre D,Bandage,133,181,3,2
+2026-12,Centre D,Bandage,127,101,3,2
+2026-01,Centre D,Pulse Oximeter,15,14,14,4
+2026-02,Centre D,Pulse Oximeter,18,17,14,4
+2026-03,Centre D,Pulse Oximeter,21,26,14,4
+2026-04,Centre D,Pulse Oximeter,21,17,14,4
+2026-05,Centre D,Pulse Oximeter,16,20,14,4
+2026-06,Centre D,Pulse Oximeter,18,17,14,4
+2026-07,Centre D,Pulse Oximeter,15,15,14,4
+2026-08,Centre D,Pulse Oximeter,17,21,14,4
+2026-09,Centre D,Pulse Oximeter,13,17,14,4
+2026-10,Centre D,Pulse Oximeter,11,12,14,4
+2026-11,Centre D,Pulse Oximeter,11,13,14,4
+2026-12,Centre D,Pulse Oximeter,14,15,14,4
+2026-01,Centre E,ORS,64,68,5,5
+2026-02,Centre E,ORS,80,107,5,5
+2026-03,Centre E,ORS,79,96,5,5
+2026-04,Centre E,ORS,71,90,5,5
+2026-05,Centre E,ORS,84,105,5,5
+2026-06,Centre E,ORS,71,59,5,5
+2026-07,Centre E,ORS,63,63,5,5
+2026-08,Centre E,ORS,51,47,5,5
+2026-09,Centre E,ORS,38,42,5,5
+2026-10,Centre E,ORS,50,53,5,5
+2026-11,Centre E,ORS,38,46,5,5
+2026-12,Centre E,ORS,61,24,5,5
+2026-01,Centre E,Antibiotic,44,47,7,5
+2026-02,Centre E,Antibiotic,46,55,7,5
+2026-03,Centre E,Antibiotic,49,40,7,5
+2026-04,Centre E,Antibiotic,50,45,7,5
+2026-05,Centre E,Antibiotic,48,40,7,5
+2026-06,Centre E,Antibiotic,45,39,7,5
+2026-07,Centre E,Antibiotic,37,37,7,5
+2026-08,Centre E,Antibiotic,36,39,7,5
+2026-09,Centre E,Antibiotic,32,40,7,5
+2026-10,Centre E,Antibiotic,31,36,7,5
+2026-11,Centre E,Antibiotic,35,43,7,5
+2026-12,Centre E,Antibiotic,34,44,7,5
+2026-01,Centre E,Diagnostic Kit,29,27,10,4
+2026-02,Centre E,Diagnostic Kit,31,38,10,4
+2026-03,Centre E,Diagnostic Kit,38,31,10,4
+2026-04,Centre E,Diagnostic Kit,35,31,10,4
+2026-05,Centre E,Diagnostic Kit,34,44,10,4
+2026-06,Centre E,Diagnostic Kit,29,36,10,4
+2026-07,Centre E,Diagnostic Kit,25,21,10,4
+2026-08,Centre E,Diagnostic Kit,20,24,10,4
+2026-09,Centre E,Diagnostic Kit,22,28,10,4
+2026-10,Centre E,Diagnostic Kit,18,15,10,4
+2026-11,Centre E,Diagnostic Kit,18,18,10,4
+2026-12,Centre E,Diagnostic Kit,24,14,10,4
+2026-01,Centre E,Bandage,83,70,3,2
+2026-02,Centre E,Bandage,99,111,3,2
+2026-03,Centre E,Bandage,103,109,3,2
+2026-04,Centre E,Bandage,98,85,3,2
+2026-05,Centre E,Bandage,87,103,3,2
+2026-06,Centre E,Bandage,79,90,3,2
+2026-07,Centre E,Bandage,74,63,3,2
+2026-08,Centre E,Bandage,82,73,3,2
+2026-09,Centre E,Bandage,70,63,3,2
+2026-10,Centre E,Bandage,70,67,3,2
+2026-11,Centre E,Bandage,75,78,3,2
+2026-12,Centre E,Bandage,73,29,3,2
+2026-01,Centre E,Pulse Oximeter,10,13,14,4
+2026-02,Centre E,Pulse Oximeter,13,10,14,4
+2026-03,Centre E,Pulse Oximeter,13,16,14,4
+2026-04,Centre E,Pulse Oximeter,14,18,14,4
+2026-05,Centre E,Pulse Oximeter,13,14,14,4
+2026-06,Centre E,Pulse Oximeter,13,16,14,4
+2026-07,Centre E,Pulse Oximeter,10,12,14,4
+2026-08,Centre E,Pulse Oximeter,10,11,14,4
+2026-09,Centre E,Pulse Oximeter,10,10,14,4
+2026-10,Centre E,Pulse Oximeter,10,11,14,4
+2026-11,Centre E,Pulse Oximeter,10,11,14,4
+2026-12,Centre E,Pulse Oximeter,10,8,14,4
