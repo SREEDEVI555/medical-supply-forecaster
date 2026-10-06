@@ -5,22 +5,23 @@ import plotly.express as px
 import plotly.graph_objects as go
 import os
 
-from generate_dataset import generate_medical_dataset
-from model import load_data, train_and_predict_next_month, HAS_XGBOOST
+from generate_all_datasets import generate_full_system_datasets
+from model import load_data, compare_models_and_predict
+from inventory_engine import load_relational_datasets, compute_inventory_metrics
+from referral_engine import evaluate_patient_referral
 from allocation import calculate_allocations, get_default_partner_inventory
 
 # Page configuration
 st.set_page_config(
-    page_title="Medical Supply Demand Forecaster & Risk Allocator",
+    page_title="AI Healthcare Supply Chain & Patient Referral System",
     page_icon="🏥",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS styling for premium UI design
+# Custom CSS styling
 st.markdown("""
 <style>
-    /* Dark glassmorphism card styling */
     .stApp {
         background-color: #0e1117;
     }
@@ -50,30 +51,6 @@ st.markdown("""
         color: #38bdf8;
         margin-top: 4px;
     }
-    .badge-red {
-        background-color: rgba(239, 68, 68, 0.2);
-        color: #fca5a5;
-        border: 1px solid #ef4444;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-weight: 600;
-    }
-    .badge-yellow {
-        background-color: rgba(245, 158, 11, 0.2);
-        color: #fde047;
-        border: 1px solid #f59e0b;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-weight: 600;
-    }
-    .badge-green {
-        background-color: rgba(34, 197, 94, 0.2);
-        color: #86efac;
-        border: 1px solid #22c55e;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-weight: 600;
-    }
     .section-header {
         font-size: 1.3rem;
         font-weight: 600;
@@ -86,295 +63,265 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-DATA_FILE = "medical_supply_data.csv"
-
-# Ensure data file exists
-if not os.path.exists(DATA_FILE):
-    generate_medical_dataset(DATA_FILE)
+# Ensure 7 relational datasets exist
+if not os.path.exists("medical_demand.csv") or not os.path.exists("inventory.csv"):
+    generate_full_system_datasets(".")
 
 @st.cache_data
-def get_historical_data():
-    return load_data(DATA_FILE)
+def load_all_data():
+    return load_relational_datasets(".")
 
 @st.cache_data
-def get_predictions_and_risk():
-    df_hist = load_data(DATA_FILE)
-    return train_and_predict_next_month(df_hist)
+def get_forecasting_results():
+    df_demand = load_data("medical_demand.csv")
+    return compare_models_and_predict(df_demand)
 
 # Load data
-df_hist = get_historical_data()
-df_risk = get_predictions_and_risk()
+df_demand, df_inventory, df_clinics, df_hospitals, df_referrals, df_access, df_medicines = load_all_data()
+df_comp, df_risk = get_forecasting_results()
+df_inv_opt = compute_inventory_metrics(df_demand, df_inventory, df_access, df_medicines)
 
 # Sidebar Navigation & Filters
 st.sidebar.image("https://img.icons8.com/color/96/000000/hospital-2.png", width=70)
-st.sidebar.title("Healthcare Supply AI")
-st.sidebar.caption("Proof of Concept • Demand & Risk System")
+st.sidebar.title("Healthcare AI Operations")
+st.sidebar.caption("Supply Chain & Referral Decision System")
 
 st.sidebar.markdown("---")
 st.sidebar.subheader("🎛️ Interactive Filters")
 
-all_centres = sorted(df_hist["centre"].unique())
-selected_centre = st.sidebar.selectbox("Select Healthcare Centre", ["All Centres"] + all_centres)
+all_clinics = sorted(df_clinics["Clinic_ID"].unique())
+selected_clinic = st.sidebar.selectbox("Select Clinic", ["All Clinics"] + all_clinics)
 
-all_items = sorted(df_hist["item"].unique())
-selected_item = st.sidebar.selectbox("Select Medical Item", ["All Items"] + all_items)
+all_meds = sorted(df_medicines["Medicine_Name"].unique())
+selected_med = st.sidebar.selectbox("Select Medicine", ["All Medicines"] + all_meds)
 
 st.sidebar.markdown("---")
 st.sidebar.info(
-    f"**Model Engine**: {'XGBoost Regressor' if HAS_XGBOOST else 'Random Forest Regressor'}\n\n"
-    f"**Data Scope**: 5 Centres × 5 Items × 12 Months\n\n"
-    f"**Forecast Target**: Month 13 (2027-01)"
+    "**Architecture Modules**:\n"
+    "1. 📈 Demand Forecasting (ARIMA/Prophet/XGBoost)\n"
+    "2. 📦 Safety Stock, ROP & EOQ Optimization\n"
+    "3. 🚨 Risk-Aware Priority Engine\n"
+    "4. 🚑 Patient Referral & Local Capability Matching\n"
+    "5. 🏥 Hospital Capability & Accessibility Scoring"
 )
 
 # Header Section
-st.title("🏥 Medical Supply Demand & Risk Allocator")
-st.markdown("Predict future demand, evaluate shortage risk scores, and optimize central hospital stock allocations across healthcare centres.")
+st.title("🏥 AI-Driven Remote Healthcare & Supply Chain System")
+st.markdown("Integrated decision platform combining **Multi-Model Demand Forecasting**, **Inventory Optimization (Safety Stock / ROP / EOQ)**, and **Patient Referral Matching**.")
 
 # Top KPI Summary Cards
 total_pred_demand = df_risk["predicted_demand"].sum()
-total_stock = df_risk["current_stock"].sum()
-total_shortage = df_risk["expected_shortage"].sum()
-high_risk_count = len(df_risk[df_risk["status"].str.contains("High")])
+total_urgent_rep = len(df_inv_opt[df_inv_opt["Priority_Badge"].str.contains("URGENT")])
+avg_stockout_risk = df_inv_opt["Stockout_Risk"].mean() * 100
+total_referral_cases = len(df_referrals)
 
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.markdown(f"""
     <div class="metric-card">
-        <div class="metric-title">Predicted Demand</div>
+        <div class="metric-title">Forecasted Demand</div>
         <div class="metric-value">{total_pred_demand:,}</div>
-        <div class="metric-sub">Units for next month</div>
+        <div class="metric-sub">Units needed next month</div>
     </div>
     """, unsafe_allow_html=True)
 
 with col2:
     st.markdown(f"""
     <div class="metric-card">
-        <div class="metric-title">Current Stock</div>
-        <div class="metric-value">{total_stock:,}</div>
-        <div class="metric-sub">Units across all centres</div>
+        <div class="metric-title">Urgent Replenishments 🔴</div>
+        <div class="metric-value" style="color: #fb7185;">{total_urgent_rep}</div>
+        <div class="metric-sub">Items below Reorder Point</div>
     </div>
     """, unsafe_allow_html=True)
 
 with col3:
     st.markdown(f"""
     <div class="metric-card">
-        <div class="metric-title">Total Expected Shortage</div>
-        <div class="metric-value" style="color: #f87171;">{total_shortage:,}</div>
-        <div class="metric-sub">Deficit units needed</div>
+        <div class="metric-title">Avg Stockout Risk</div>
+        <div class="metric-value" style="color: #f87171;">{avg_stockout_risk:.1f}%</div>
+        <div class="metric-sub">Across all outposts</div>
     </div>
     """, unsafe_allow_html=True)
 
 with col4:
     st.markdown(f"""
     <div class="metric-card">
-        <div class="metric-title">High Risk Items 🔴</div>
-        <div class="metric-value" style="color: #fb7185;">{high_risk_count}</div>
-        <div class="metric-sub">Requires immediate allocation</div>
+        <div class="metric-title">Referral Cases Tracked</div>
+        <div class="metric-value">{total_referral_cases}</div>
+        <div class="metric-sub">Capability checked</div>
     </div>
     """, unsafe_allow_html=True)
 
-# Tabs
-tab1, tab2, tab3, tab4 = st.tabs([
-    "📈 Step 1 & 2: Historical Demand",
-    "🤖 Step 3-6: ML Forecast & Risk Ranking",
-    "🏥 Step 7: Partner Hospital Allocation",
-    "📋 Complete Dataset View"
+# Main Navigation Tabs
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    "📈 Demand Forecasting & Model Evaluation",
+    "📦 Inventory Optimization (Safety Stock, ROP & EOQ)",
+    "🚑 Patient Referral & Hospital Matching",
+    "🗺️ Route Accessibility Matrix",
+    "📋 System Relational Datasets"
 ])
 
 # ----------------------------------------------------
-# TAB 1: HISTORICAL DEMAND VISUALIZATION
+# TAB 1: DEMAND FORECASTING (ARIMA vs PROPHET vs XGBOOST)
 # ----------------------------------------------------
 with tab1:
-    st.markdown("<div class='section-header'>Step 1 & 2: Historical Demand Analysis</div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-header'>Workflow Part 1: Demand Forecasting (ARIMA / Prophet / XGBoost)</div>", unsafe_allow_html=True)
     
-    filtered_hist = df_hist.copy()
-    if selected_centre != "All Centres":
-        filtered_hist = filtered_hist[filtered_hist["centre"] == selected_centre]
-    if selected_item != "All Items":
-        filtered_hist = filtered_hist[filtered_hist["item"] == selected_item]
+    col_m1, col_m2 = st.columns([1, 2])
+    with col_m1:
+        st.subheader("🏆 Model Victory Breakdown")
+        wins = df_risk["selected_model"].value_counts().reset_index()
+        wins.columns = ["Model", "Series Won"]
+        st.dataframe(wins, use_container_width=True)
         
-    st.write(f"Showing historical demand data ({len(filtered_hist)} records):")
-    
-    # Plotly Trend Chart
-    fig_hist = px.line(
-        filtered_hist,
-        x="date",
-        y="demand",
-        color="item" if selected_centre != "All Centres" else "centre",
-        line_group="item",
-        symbol="item",
-        markers=True,
-        title=f"Historical Demand Trend (2026-01 to 2026-12) - {selected_centre} / {selected_item}",
-        labels={"date": "Month", "demand": "Demand (Units)", "centre": "Centre", "item": "Item"},
-        template="plotly_dark"
-    )
-    fig_hist.update_layout(height=450, hovermode="x unified", font=dict(family="Inter, sans-serif"))
-    st.plotly_chart(fig_hist, use_container_width=True)
-    
-    st.markdown("---")
-    col_a, col_b = st.columns(2)
-    with col_a:
-        st.subheader("Demand Distribution by Item")
-        fig_box = px.box(
-            filtered_hist, x="item", y="demand", color="item",
-            template="plotly_dark", title="Demand Variance per Item"
-        )
-        st.plotly_chart(fig_box, use_container_width=True)
+        fig_pie = px.pie(wins, names="Model", values="Series Won", title="Best Model Win Ratio", template="plotly_dark")
+        st.plotly_chart(fig_pie, use_container_width=True)
         
-    with col_b:
-        st.subheader("Demand vs Current Stock")
-        avg_df = filtered_hist.groupby("item")[["demand", "stock"]].mean().reset_index()
-        fig_bar = px.bar(
-            avg_df, x="item", y=["demand", "stock"], barmode="group",
-            template="plotly_dark", title="Average Monthly Demand vs Average Stock Pool"
-        )
-        st.plotly_chart(fig_bar, use_container_width=True)
+    with col_m2:
+        st.subheader("📊 Model MAE & RMSE Error Benchmarks")
+        avg_err = df_comp.groupby("model")[["mae", "rmse"]].mean().reset_index()
+        fig_err = px.bar(avg_err, x="model", y=["mae", "rmse"], barmode="group", title="Average Error Rate (Lower is Better)", template="plotly_dark")
+        st.plotly_chart(fig_err, use_container_width=True)
+        
+    st.markdown("<div class='section-header'>Historical Demand Trends & Next Month Forecast</div>", unsafe_allow_html=True)
+    fig_line = px.line(df_demand, x="Date", y="Quantity_Consumed", color="Medicine_Name", facet_col="Clinic_ID", title="Monthly Consumption Trends per Clinic", template="plotly_dark")
+    st.plotly_chart(fig_line, use_container_width=True)
 
 # ----------------------------------------------------
-# TAB 2: ML FORECAST & RISK SCORING
+# TAB 2: INVENTORY OPTIMIZATION (SAFETY STOCK, ROP & EOQ)
 # ----------------------------------------------------
 with tab2:
-    st.markdown("<div class='section-header'>Step 3 - 6: ML Prediction & Item Risk Ranking</div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-header'>Workflow Part 2: Stockout Risk, Safety Stock, ROP & EOQ Engine</div>", unsafe_allow_html=True)
     
     st.markdown("""
-    **Risk Score Calculation Pipeline:**
-    $$\\text{Predicted Demand} \\rightarrow \\text{Current Stock} \\rightarrow \\text{Expected Shortage} \\rightarrow \\text{Criticality (1-5)} \\rightarrow \\text{Lead Time} \\rightarrow \\text{Risk Score (0-1)}$$
+    **Operations Management Formulas Implemented**:
+    - **Safety Stock ($SS$)**: $Z \cdot \sigma_d \cdot \sqrt{L_{\text{months}}}$
+    - **Reorder Point ($ROP$)**: $(\text{Avg Demand} \cdot L_{\text{months}}) + SS$
+    - **Economic Order Quantity ($EOQ$)**: $\sqrt{\\frac{2 \cdot D \cdot S}{H}}$
+    - **Replenishment Priority Score**: $0.40(\text{Stockout Risk}) + 0.30(\text{Criticality}) + 0.15(\text{Lead Time}) + 0.15(\text{Accessibility Risk})$
     """)
     
-    filtered_risk = df_risk.copy()
-    if selected_centre != "All Centres":
-        filtered_risk = filtered_risk[filtered_risk["centre"] == selected_centre]
-    if selected_item != "All Items":
-        filtered_risk = filtered_risk[filtered_risk["item"] == selected_item]
+    filtered_inv = df_inv_opt.copy()
+    if selected_clinic != "All Clinics":
+        filtered_inv = filtered_inv[filtered_inv["Clinic_ID"] == selected_clinic]
+    if selected_med != "All Medicines":
+        filtered_inv = filtered_inv[filtered_inv["Medicine_Name"] == selected_med]
         
-    # Grouped display per Centre (as requested in Step 6 format)
-    centres_to_show = [selected_centre] if selected_centre != "All Centres" else sorted(filtered_risk["centre"].unique())
+    display_cols = [
+        "Clinic_ID", "Medicine_Name", "Current_Stock", "Safety_Stock", "Reorder_Point", "EOQ",
+        "Stockout_Risk", "Accessibility_Risk", "Replenishment_Priority_Score", "Priority_Badge"
+    ]
     
-    for c in centres_to_show:
-        c_df = filtered_risk[filtered_risk["centre"] == c].sort_values("risk_score", ascending=False)
-        
-        st.subheader(f"📍 {c} - Item Risk Ranking")
-        
-        # Display nicely formatted table matching Step 6 format
-        table_rows = []
-        for idx, row in c_df.reset_index(drop=True).iterrows():
-            table_rows.append({
-                "Rank": f"#{idx+1}",
-                "Medical Item": row["item"],
-                "Predicted Demand": row["predicted_demand"],
-                "Current Stock": row["current_stock"],
-                "Expected Shortage": row["expected_shortage"],
-                "Criticality": f"{row['criticality']}/5",
-                "Lead Time": f"{row['lead_time']} days",
-                "Risk Score": f"{row['risk_score']:.2f}",
-                "Status": row["status"]
-            })
-            
-        st.dataframe(
-            pd.DataFrame(table_rows),
-            use_container_width=True,
-            column_config={
-                "Risk Score": st.column_config.ProgressColumn(
-                    "Risk Score",
-                    help="Calculated risk level",
-                    format="%.2f",
-                    min_value=0.0,
-                    max_value=1.0,
-                )
-            }
-        )
-        st.markdown("<br>", unsafe_allow_html=True)
-        
-    # Risk Matrix Scatter Plot
-    st.markdown("<div class='section-header'>Risk Matrix: Shortage vs Lead Time & Criticality</div>", unsafe_allow_html=True)
-    fig_scatter = px.scatter(
-        filtered_risk,
-        x="expected_shortage",
-        y="risk_score",
-        size="criticality",
-        color="status",
-        hover_name="item",
-        facet_col="centre" if selected_centre == "All Centres" else None,
-        color_discrete_map={"🔴 High": "#ef4444", "🟡 Medium": "#f59e0b", "🟢 Low": "#22c55e"},
-        title="Inventory Risk Matrix",
-        template="plotly_dark"
+    st.dataframe(
+        filtered_inv[display_cols],
+        use_container_width=True,
+        column_config={
+            "Replenishment_Priority_Score": st.column_config.ProgressColumn(
+                "Priority Score", min_value=0.0, max_value=1.0, format="%.2f"
+            )
+        }
     )
-    st.plotly_chart(fig_scatter, use_container_width=True)
+    
+    col_i1, col_i2 = st.columns(2)
+    with col_i1:
+        st.subheader("Current Stock vs Reorder Point (ROP)")
+        fig_rop = px.bar(filtered_inv.head(10), x="Medicine_Name", y=["Current_Stock", "Reorder_Point", "Safety_Stock"], barmode="group", template="plotly_dark", title="Stock Position relative to ROP & Safety Stock")
+        st.plotly_chart(fig_rop, use_container_width=True)
+        
+    with col_i2:
+        st.subheader("EOQ (Economic Order Quantity) per Item")
+        fig_eoq = px.bar(filtered_inv.head(10), x="Medicine_Name", y="EOQ", color="Criticality_Level", template="plotly_dark", title="Optimal Order Quantity (EOQ)")
+        st.plotly_chart(fig_eoq, use_container_width=True)
 
 # ----------------------------------------------------
-# TAB 3: PARTNER HOSPITAL ALLOCATION
+# TAB 3: PATIENT REFERRAL & LOCAL CAPABILITY MATCHING
 # ----------------------------------------------------
 with tab3:
-    st.markdown("<div class='section-header'>Step 7: Partner Hospital Allocation Engine</div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-header'>Workflow Part 3: Patient Requirement & Tele-Triage Decision Tree</div>", unsafe_allow_html=True)
     
-    st.info("Partner Hospital A operates a central reserve stock pool. The allocation algorithm automatically assigns inventory to healthcare centres based on predicted shortages and risk rank.")
+    st.info("Implements bottom workflow of architecture diagram: Patient Requirement → Local Capability Check → If No → Hospital Capability + Distance Scoring → Referral Recommendation.")
     
-    # Sidebar or top controls for central depot stock customization
-    st.subheader("📦 Central Depot Reserve Stock (Partner Hospital A)")
+    col_ref1, col_ref2 = st.columns([1, 1])
     
-    default_inv = get_default_partner_inventory()
-    inv_cols = st.columns(len(default_inv))
-    
-    custom_inventory = {}
-    for i, (item_k, default_v) in enumerate(default_inv.items()):
-        with inv_cols[i]:
-            custom_inventory[item_k] = st.number_input(
-                f"{item_k}", min_value=0, max_value=1000, value=default_v, step=10
-            )
-            
-    # Calculate allocations
-    alloc_df, remaining_stock = calculate_allocations(df_risk, custom_inventory)
-    
-    col_alloc1, col_alloc2 = st.columns([3, 2])
-    
-    with col_alloc1:
-        st.subheader("💡 Recommended Allocation Directives")
-        if len(alloc_df) > 0:
-            # Display step-7 style recommendation text
-            rec_texts = []
-            for _, r in alloc_df.iterrows():
-                rec_texts.append(f"**Partner Hospital A** → **{r['to']}** : {r['allocated_quantity']} units of `{r['item']}` ({r['risk_status']} Risk, Shortage: {r['expected_shortage']})")
-                
-            for txt in rec_texts:
-                st.markdown(f"👉 {txt}")
-                
-            st.markdown("---")
-            st.dataframe(
-                alloc_df[["from", "to", "item", "expected_shortage", "allocated_quantity", "remaining_shortage", "risk_status"]],
-                use_container_width=True
-            )
-        else:
-            st.success("No shortages detected! All healthcare centres have sufficient current stock.")
-            
-    with col_alloc2:
-        st.subheader("📊 Remaining Central Pool")
-        rem_data = pd.DataFrame([
-            {"Item": k, "Initial Stock": custom_inventory[k], "Remaining Pool": v, "Allocated": custom_inventory[k] - v}
-            for k, v in remaining_stock.items()
-        ])
-        st.dataframe(rem_data, use_container_width=True)
+    with col_ref1:
+        st.subheader("📥 Interactive Patient Triage Input")
+        test_clinic = st.selectbox("Patient Origin Clinic", all_clinics, index=1)
+        test_service = st.selectbox("Required Treatment Service", ["Surgery", "ICU Care", "Advanced Diagnostics", "Basic Care", "IV Fluid Care", "Minor Wound Care"])
+        test_urgency = st.selectbox("Urgency Level", ["Emergency", "High", "Medium", "Low"])
         
-        fig_alloc_pie = px.bar(
-            rem_data, x="Item", y=["Allocated", "Remaining Pool"],
-            title="Central Stock Utilization", barmode="stack", template="plotly_dark"
-        )
-        st.plotly_chart(fig_alloc_pie, use_container_width=True)
+        test_case = {
+            "Clinic_ID": test_clinic,
+            "Required_Service": test_service,
+            "Urgency_Level": test_urgency
+        }
+        
+        result = evaluate_patient_referral(test_case, df_clinics.to_dict("records"), df_hospitals.to_dict("records"), df_access.to_dict("records"))
+        
+        st.markdown("---")
+        st.subheader("📋 Decision Output")
+        if result["Decision"] == "Local Care":
+            st.success(f"✅ **DECISION**: {result['Decision']}")
+        else:
+            st.warning(f"🚨 **DECISION**: {result['Decision']}")
+            
+        st.write(f"**Recommendation**: {result['Recommendation']}")
+        st.write(f"**Details**: {result['Details']}")
+        
+    with col_ref2:
+        st.subheader("🏥 Hospital Capability & Accessibility Scoring")
+        if "Ranked_Candidates" in result:
+            cand_df = pd.DataFrame(result["Ranked_Candidates"])
+            st.dataframe(cand_df[["Hospital_ID", "Hospital_Name", "Referral_Score", "Distance_KM", "Travel_Time_Min", "Available_Beds", "Capability_Match"]], use_container_width=True)
+            
+            fig_cand = px.bar(cand_df, x="Hospital_Name", y="Referral_Score", color="Capability_Match", title="Hospital Suitability Score", template="plotly_dark")
+            st.plotly_chart(fig_cand, use_container_width=True)
+        else:
+            st.success("Local clinic has full capability to treat patient. No referral required!")
+            
+    st.markdown("<div class='section-header'>Historical Referral Cases Log</div>", unsafe_allow_html=True)
+    st.dataframe(df_referrals, use_container_width=True)
 
 # ----------------------------------------------------
-# TAB 4: COMPLETE DATASET
+# TAB 4: ROUTE ACCESSIBILITY MATRIX
 # ----------------------------------------------------
 with tab4:
-    st.markdown("<div class='section-header'>Complete Historical Dataset (5 Centres × 5 Items × 12 Months)</div>", unsafe_allow_html=True)
-    st.dataframe(df_hist, use_container_width=True)
+    st.markdown("<div class='section-header'>Route Accessibility & Transportation Matrix</div>", unsafe_allow_html=True)
+    st.dataframe(df_access, use_container_width=True)
     
-    st.download_button(
-        label="📥 Download CSV Dataset",
-        data=df_hist.to_csv(index=False),
-        file_name="medical_supply_data.csv",
-        mime="text/csv"
-    )
+    fig_route = px.scatter(df_access, x="Distance_KM", y="Travel_Time_Minutes", size="Average_Delivery_Time_Days", color="Road_Condition", hover_name="Route_ID", title="Transit Distance vs Travel Time & Delivery Delay", template="plotly_dark")
+    st.plotly_chart(fig_route, use_container_width=True)
+
+# ----------------------------------------------------
+# TAB 5: SYSTEM RELATIONAL DATASETS EXPLORER
+# ----------------------------------------------------
+with tab5:
+    st.markdown("<div class='section-header'>Complete Relational Database System (7 CSV Datasets)</div>", unsafe_allow_html=True)
+    
+    dataset_choice = st.selectbox("Select Relational Dataset to View", [
+        "medical_demand.csv (Demand Dataset)",
+        "inventory.csv (Inventory Dataset)",
+        "clinics.csv (Remote Clinics Dataset)",
+        "hospitals.csv (Hospitals Dataset)",
+        "referral_cases.csv (Patient Referral Dataset)",
+        "accessibility.csv (Accessibility Dataset)",
+        "medicines.csv (Medicines Master Dataset)"
+    ])
+    
+    ds_map = {
+        "medical_demand.csv (Demand Dataset)": df_demand,
+        "inventory.csv (Inventory Dataset)": df_inventory,
+        "clinics.csv (Remote Clinics Dataset)": df_clinics,
+        "hospitals.csv (Hospitals Dataset)": df_hospitals,
+        "referral_cases.csv (Patient Referral Dataset)": df_referrals,
+        "accessibility.csv (Accessibility Dataset)": df_access,
+        "medicines.csv (Medicines Master Dataset)": df_medicines
+    }
+    
+    target_df = ds_map[dataset_choice]
+    st.write(f"Displaying {len(target_df)} rows:")
+    st.dataframe(target_df, use_container_width=True)
 
 # Footer
 st.markdown("---")
-st.caption("Proof of Concept Application • Built with Streamlit, Pandas, XGBoost & Plotly")
+st.caption("AI Healthcare Supply Chain & Referral System • Complete Architecture Implementation")

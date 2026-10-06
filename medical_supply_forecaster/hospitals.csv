@@ -1,0 +1,4 @@
+Hospital_ID,Hospital_Name,Location,Latitude,Longitude,Emergency_Care,ICU_Available,Surgery_Available,Specialist_Available,Diagnostic_Facilities,Ambulance_Available,Bed_Capacity,Available_Beds,Operating_Hours,Specialties,Treatment_Capabilities
+H001,Ramanathapuram District Headquarters Hospital,Ramanathapuram City,9.3716,78.8311,Yes,Yes,Yes,Yes,"Advanced (CT, Ultrasound, X-Ray, Lab)",Yes,350,42,24/7,"General Surgery, Trauma, Cardiology, Pediatrics, Infectious Disease","ICU, Surgery, Antivenom, Emergency Care"
+H002,Madurai Medical College & Hospital Hub,Madurai Metro Region,9.9252,78.1198,Yes,Yes,Yes,Yes,"Comprehensive (MRI, CT, Bio-Lab)",Yes,1200,115,24/7,"Super Speciality, Trauma, Toxicology, Critical Care","Comprehensive Critical Care, Emergency Surgery"
+H003,Paramakudi Community Sub-Hospital,Paramakudi Town,9.5441,78.5882,Yes,No,Yes,No,"Basic (X-Ray, Blood Lab)",Yes,100,18,24/7,"General Medicine, Basic Surgery, Obstetrics","Basic Surgery, Inpatient Care"

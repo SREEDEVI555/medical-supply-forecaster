@@ -1,0 +1,8 @@
+Medicine_ID,Medicine_Name,Category,Unit,Criticality_Level,Shelf_Life_Days,Storage_Type,Essential_Medicine
+M001,ORS (Oral Rehydration),Rehydration,Sachet,High,730,Normal,Yes
+M002,Amoxicillin Antibiotic,Antibiotic,Capsule,High,540,Normal,Yes
+M003,IV Normal Saline 500ml,IV Fluid,Bottle,Critical,365,Normal,Yes
+M004,Sterile Gauze Bandage,Wound Care,Pack,Medium,1095,Normal,Yes
+M005,Paracetamol 500mg,Analgesic,Tablet,Low,730,Normal,Yes
+M006,Pulse Oximeter Sensor,Diagnostic Device,Piece,High,1825,Normal,Yes
+M007,Injectable Antivenom,Antidote,Vial,Critical,365,Refrigerated,Yes

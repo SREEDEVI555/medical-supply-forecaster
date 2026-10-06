@@ -1,0 +1,6 @@
+Clinic_ID,Clinic_Name,Location,Latitude,Longitude,Population_Served,Average_Daily_Patients,Staff_Count,Doctor_Available,Nurse_Available,Basic_Diagnostics,Emergency_Care,IV_Fluid_Care,Minor_Wound_Care,Pharmacy_Available,Storage_Capacity,Accessibility_Level
+C001,Rameswaram Island Sub-Centre,Rameswaram Coastal Zone,9.2876,79.3129,12500,45,4,Yes,Yes,Yes,No,Yes,Yes,Yes,500,Moderate
+C002,Kurusadai Marine Outpost Clinic,Gulf of Mannar Island,9.245,79.2083,6200,22,2,No,Yes,No,No,No,Yes,Yes,250,Difficult
+C003,Mandapam Primary Health Centre,Mandapam Peninsula,9.2778,79.1247,18900,85,8,Yes,Yes,Yes,Yes,Yes,Yes,Yes,1200,Easy
+C004,Dhanushkodi Border Health Post,Dhanushkodi Point,9.1764,79.4189,4100,18,2,No,Yes,No,No,Yes,Yes,Yes,200,Difficult
+C005,Pamban Western Health Clinic,Pamban West,9.2811,79.2155,9800,38,5,Yes,Yes,Yes,No,Yes,Yes,Yes,450,Moderate

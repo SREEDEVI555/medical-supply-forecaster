@@ -1,0 +1,301 @@
+Date,Clinic_ID,Medicine_ID,Medicine_Name,Medicine_Category,Quantity_Consumed,Patient_Count,Condition_Category,Season,Day_of_Week,Month,Previous_Stockout,Stockout_Days
+2026-01,C001,M001,ORS (Oral Rehydration),Rehydration,93,230,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,1,0,0
+2026-01,C001,M002,Amoxicillin Antibiotic,Antibiotic,100,207,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,1,0,0
+2026-01,C001,M003,IV Normal Saline 500ml,IV Fluid,78,180,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,1,0,0
+2026-01,C001,M004,Sterile Gauze Bandage,Wound Care,120,352,General Trauma / Wound,Winter,Monthly_Aggregate,1,0,0
+2026-01,C001,M005,Paracetamol 500mg,Analgesic,89,280,General Trauma / Wound,Winter,Monthly_Aggregate,1,0,0
+2026-01,C002,M001,ORS (Oral Rehydration),Rehydration,51,162,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,1,0,0
+2026-01,C002,M002,Amoxicillin Antibiotic,Antibiotic,42,91,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,1,0,0
+2026-01,C002,M003,IV Normal Saline 500ml,IV Fluid,46,108,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,1,0,0
+2026-01,C002,M004,Sterile Gauze Bandage,Wound Care,56,148,General Trauma / Wound,Winter,Monthly_Aggregate,1,0,0
+2026-01,C002,M005,Paracetamol 500mg,Analgesic,48,139,General Trauma / Wound,Winter,Monthly_Aggregate,1,0,0
+2026-01,C003,M001,ORS (Oral Rehydration),Rehydration,169,439,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,1,0,0
+2026-01,C003,M002,Amoxicillin Antibiotic,Antibiotic,158,477,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,1,0,0
+2026-01,C003,M003,IV Normal Saline 500ml,IV Fluid,172,360,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,1,0,0
+2026-01,C003,M004,Sterile Gauze Bandage,Wound Care,183,406,General Trauma / Wound,Winter,Monthly_Aggregate,1,0,0
+2026-01,C003,M005,Paracetamol 500mg,Analgesic,132,301,General Trauma / Wound,Winter,Monthly_Aggregate,1,0,0
+2026-01,C004,M001,ORS (Oral Rehydration),Rehydration,30,64,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,1,0,0
+2026-01,C004,M002,Amoxicillin Antibiotic,Antibiotic,34,92,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,1,0,0
+2026-01,C004,M003,IV Normal Saline 500ml,IV Fluid,31,85,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,1,0,0
+2026-01,C004,M004,Sterile Gauze Bandage,Wound Care,29,76,General Trauma / Wound,Winter,Monthly_Aggregate,1,0,0
+2026-01,C004,M005,Paracetamol 500mg,Analgesic,34,106,General Trauma / Wound,Winter,Monthly_Aggregate,1,0,0
+2026-01,C005,M001,ORS (Oral Rehydration),Rehydration,81,185,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,1,0,0
+2026-01,C005,M002,Amoxicillin Antibiotic,Antibiotic,90,222,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,1,0,0
+2026-01,C005,M003,IV Normal Saline 500ml,IV Fluid,75,178,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,1,0,0
+2026-01,C005,M004,Sterile Gauze Bandage,Wound Care,72,208,General Trauma / Wound,Winter,Monthly_Aggregate,1,0,0
+2026-01,C005,M005,Paracetamol 500mg,Analgesic,86,275,General Trauma / Wound,Winter,Monthly_Aggregate,1,0,0
+2026-02,C001,M001,ORS (Oral Rehydration),Rehydration,104,332,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,2,0,0
+2026-02,C001,M002,Amoxicillin Antibiotic,Antibiotic,106,245,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,2,0,0
+2026-02,C001,M003,IV Normal Saline 500ml,IV Fluid,103,321,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,2,0,0
+2026-02,C001,M004,Sterile Gauze Bandage,Wound Care,115,280,General Trauma / Wound,Winter,Monthly_Aggregate,2,0,0
+2026-02,C001,M005,Paracetamol 500mg,Analgesic,86,188,General Trauma / Wound,Winter,Monthly_Aggregate,2,0,0
+2026-02,C002,M001,ORS (Oral Rehydration),Rehydration,53,144,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,2,0,0
+2026-02,C002,M002,Amoxicillin Antibiotic,Antibiotic,42,133,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,2,0,0
+2026-02,C002,M003,IV Normal Saline 500ml,IV Fluid,49,146,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,2,0,0
+2026-02,C002,M004,Sterile Gauze Bandage,Wound Care,49,115,General Trauma / Wound,Winter,Monthly_Aggregate,2,0,0
+2026-02,C002,M005,Paracetamol 500mg,Analgesic,43,92,General Trauma / Wound,Winter,Monthly_Aggregate,2,0,0
+2026-02,C003,M001,ORS (Oral Rehydration),Rehydration,120,256,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,2,0,0
+2026-02,C003,M002,Amoxicillin Antibiotic,Antibiotic,166,386,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,2,0,0
+2026-02,C003,M003,IV Normal Saline 500ml,IV Fluid,163,444,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,2,0,0
+2026-02,C003,M004,Sterile Gauze Bandage,Wound Care,149,411,General Trauma / Wound,Winter,Monthly_Aggregate,2,0,0
+2026-02,C003,M005,Paracetamol 500mg,Analgesic,141,326,General Trauma / Wound,Winter,Monthly_Aggregate,2,0,0
+2026-02,C004,M001,ORS (Oral Rehydration),Rehydration,25,75,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,2,0,0
+2026-02,C004,M002,Amoxicillin Antibiotic,Antibiotic,33,69,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,2,0,0
+2026-02,C004,M003,IV Normal Saline 500ml,IV Fluid,30,60,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,2,0,0
+2026-02,C004,M004,Sterile Gauze Bandage,Wound Care,34,99,General Trauma / Wound,Winter,Monthly_Aggregate,2,0,0
+2026-02,C004,M005,Paracetamol 500mg,Analgesic,31,89,General Trauma / Wound,Winter,Monthly_Aggregate,2,0,0
+2026-02,C005,M001,ORS (Oral Rehydration),Rehydration,73,194,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,2,0,0
+2026-02,C005,M002,Amoxicillin Antibiotic,Antibiotic,77,160,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,2,0,0
+2026-02,C005,M003,IV Normal Saline 500ml,IV Fluid,78,238,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,2,0,0
+2026-02,C005,M004,Sterile Gauze Bandage,Wound Care,86,258,General Trauma / Wound,Winter,Monthly_Aggregate,2,0,0
+2026-02,C005,M005,Paracetamol 500mg,Analgesic,72,194,General Trauma / Wound,Winter,Monthly_Aggregate,2,0,0
+2026-03,C001,M001,ORS (Oral Rehydration),Rehydration,103,244,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,3,0,0
+2026-03,C001,M002,Amoxicillin Antibiotic,Antibiotic,104,320,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,3,0,0
+2026-03,C001,M003,IV Normal Saline 500ml,IV Fluid,105,323,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,3,0,0
+2026-03,C001,M004,Sterile Gauze Bandage,Wound Care,80,180,General Trauma / Wound,Winter,Monthly_Aggregate,3,0,0
+2026-03,C001,M005,Paracetamol 500mg,Analgesic,100,293,General Trauma / Wound,Winter,Monthly_Aggregate,3,0,0
+2026-03,C002,M001,ORS (Oral Rehydration),Rehydration,51,156,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,3,0,0
+2026-03,C002,M002,Amoxicillin Antibiotic,Antibiotic,43,93,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,3,0,0
+2026-03,C002,M003,IV Normal Saline 500ml,IV Fluid,53,165,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,3,0,0
+2026-03,C002,M004,Sterile Gauze Bandage,Wound Care,58,172,General Trauma / Wound,Winter,Monthly_Aggregate,3,0,0
+2026-03,C002,M005,Paracetamol 500mg,Analgesic,39,119,General Trauma / Wound,Winter,Monthly_Aggregate,3,0,0
+2026-03,C003,M001,ORS (Oral Rehydration),Rehydration,175,419,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,3,0,0
+2026-03,C003,M002,Amoxicillin Antibiotic,Antibiotic,155,483,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,3,0,0
+2026-03,C003,M003,IV Normal Saline 500ml,IV Fluid,160,475,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,3,0,0
+2026-03,C003,M004,Sterile Gauze Bandage,Wound Care,122,283,General Trauma / Wound,Winter,Monthly_Aggregate,3,0,0
+2026-03,C003,M005,Paracetamol 500mg,Analgesic,152,463,General Trauma / Wound,Winter,Monthly_Aggregate,3,0,0
+2026-03,C004,M001,ORS (Oral Rehydration),Rehydration,31,93,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,3,0,0
+2026-03,C004,M002,Amoxicillin Antibiotic,Antibiotic,33,84,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,3,0,0
+2026-03,C004,M003,IV Normal Saline 500ml,IV Fluid,38,89,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,3,0,0
+2026-03,C004,M004,Sterile Gauze Bandage,Wound Care,33,66,General Trauma / Wound,Winter,Monthly_Aggregate,3,0,0
+2026-03,C004,M005,Paracetamol 500mg,Analgesic,30,66,General Trauma / Wound,Winter,Monthly_Aggregate,3,0,0
+2026-03,C005,M001,ORS (Oral Rehydration),Rehydration,71,224,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,3,0,0
+2026-03,C005,M002,Amoxicillin Antibiotic,Antibiotic,92,214,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,3,0,0
+2026-03,C005,M003,IV Normal Saline 500ml,IV Fluid,73,231,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,3,0,0
+2026-03,C005,M004,Sterile Gauze Bandage,Wound Care,72,190,General Trauma / Wound,Winter,Monthly_Aggregate,3,0,0
+2026-03,C005,M005,Paracetamol 500mg,Analgesic,82,259,General Trauma / Wound,Winter,Monthly_Aggregate,3,0,0
+2026-04,C001,M001,ORS (Oral Rehydration),Rehydration,137,303,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,4,0,0
+2026-04,C001,M002,Amoxicillin Antibiotic,Antibiotic,107,227,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,4,0,0
+2026-04,C001,M003,IV Normal Saline 500ml,IV Fluid,132,332,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,4,0,0
+2026-04,C001,M004,Sterile Gauze Bandage,Wound Care,98,267,General Trauma / Wound,Summer,Monthly_Aggregate,4,0,0
+2026-04,C001,M005,Paracetamol 500mg,Analgesic,91,237,General Trauma / Wound,Summer,Monthly_Aggregate,4,0,0
+2026-04,C002,M001,ORS (Oral Rehydration),Rehydration,62,142,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,4,0,0
+2026-04,C002,M002,Amoxicillin Antibiotic,Antibiotic,53,151,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,4,0,0
+2026-04,C002,M003,IV Normal Saline 500ml,IV Fluid,82,216,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,4,0,0
+2026-04,C002,M004,Sterile Gauze Bandage,Wound Care,49,140,General Trauma / Wound,Summer,Monthly_Aggregate,4,0,0
+2026-04,C002,M005,Paracetamol 500mg,Analgesic,49,119,General Trauma / Wound,Summer,Monthly_Aggregate,4,0,0
+2026-04,C003,M001,ORS (Oral Rehydration),Rehydration,180,375,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,4,0,0
+2026-04,C003,M002,Amoxicillin Antibiotic,Antibiotic,144,342,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,4,0,0
+2026-04,C003,M003,IV Normal Saline 500ml,IV Fluid,188,567,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,4,0,0
+2026-04,C003,M004,Sterile Gauze Bandage,Wound Care,148,350,General Trauma / Wound,Summer,Monthly_Aggregate,4,0,0
+2026-04,C003,M005,Paracetamol 500mg,Analgesic,138,343,General Trauma / Wound,Summer,Monthly_Aggregate,4,0,0
+2026-04,C004,M001,ORS (Oral Rehydration),Rehydration,42,90,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,4,0,0
+2026-04,C004,M002,Amoxicillin Antibiotic,Antibiotic,34,85,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,4,0,0
+2026-04,C004,M003,IV Normal Saline 500ml,IV Fluid,50,154,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,4,0,0
+2026-04,C004,M004,Sterile Gauze Bandage,Wound Care,30,82,General Trauma / Wound,Summer,Monthly_Aggregate,4,0,0
+2026-04,C004,M005,Paracetamol 500mg,Analgesic,31,62,General Trauma / Wound,Summer,Monthly_Aggregate,4,0,0
+2026-04,C005,M001,ORS (Oral Rehydration),Rehydration,122,286,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,4,0,0
+2026-04,C005,M002,Amoxicillin Antibiotic,Antibiotic,69,192,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,4,0,0
+2026-04,C005,M003,IV Normal Saline 500ml,IV Fluid,111,283,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,4,0,0
+2026-04,C005,M004,Sterile Gauze Bandage,Wound Care,73,187,General Trauma / Wound,Summer,Monthly_Aggregate,4,0,0
+2026-04,C005,M005,Paracetamol 500mg,Analgesic,80,246,General Trauma / Wound,Summer,Monthly_Aggregate,4,0,0
+2026-05,C001,M001,ORS (Oral Rehydration),Rehydration,142,298,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,5,0,0
+2026-05,C001,M002,Amoxicillin Antibiotic,Antibiotic,94,246,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,5,0,0
+2026-05,C001,M003,IV Normal Saline 500ml,IV Fluid,126,375,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,5,0,0
+2026-05,C001,M004,Sterile Gauze Bandage,Wound Care,93,269,General Trauma / Wound,Summer,Monthly_Aggregate,5,0,0
+2026-05,C001,M005,Paracetamol 500mg,Analgesic,96,214,General Trauma / Wound,Summer,Monthly_Aggregate,5,0,0
+2026-05,C002,M001,ORS (Oral Rehydration),Rehydration,65,131,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,5,0,0
+2026-05,C002,M002,Amoxicillin Antibiotic,Antibiotic,49,147,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,5,0,0
+2026-05,C002,M003,IV Normal Saline 500ml,IV Fluid,74,154,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,5,0,0
+2026-05,C002,M004,Sterile Gauze Bandage,Wound Care,43,96,General Trauma / Wound,Summer,Monthly_Aggregate,5,0,0
+2026-05,C002,M005,Paracetamol 500mg,Analgesic,53,150,General Trauma / Wound,Summer,Monthly_Aggregate,5,0,0
+2026-05,C003,M001,ORS (Oral Rehydration),Rehydration,195,543,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,5,0,0
+2026-05,C003,M002,Amoxicillin Antibiotic,Antibiotic,151,303,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,5,0,0
+2026-05,C003,M003,IV Normal Saline 500ml,IV Fluid,204,434,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,5,0,0
+2026-05,C003,M004,Sterile Gauze Bandage,Wound Care,125,313,General Trauma / Wound,Summer,Monthly_Aggregate,5,0,0
+2026-05,C003,M005,Paracetamol 500mg,Analgesic,168,440,General Trauma / Wound,Summer,Monthly_Aggregate,5,0,0
+2026-05,C004,M001,ORS (Oral Rehydration),Rehydration,56,115,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,5,0,0
+2026-05,C004,M002,Amoxicillin Antibiotic,Antibiotic,32,81,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,5,0,0
+2026-05,C004,M003,IV Normal Saline 500ml,IV Fluid,52,154,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,5,0,0
+2026-05,C004,M004,Sterile Gauze Bandage,Wound Care,27,73,General Trauma / Wound,Summer,Monthly_Aggregate,5,0,0
+2026-05,C004,M005,Paracetamol 500mg,Analgesic,24,75,General Trauma / Wound,Summer,Monthly_Aggregate,5,0,0
+2026-05,C005,M001,ORS (Oral Rehydration),Rehydration,121,346,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,5,0,0
+2026-05,C005,M002,Amoxicillin Antibiotic,Antibiotic,71,185,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,5,0,0
+2026-05,C005,M003,IV Normal Saline 500ml,IV Fluid,112,344,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,5,0,0
+2026-05,C005,M004,Sterile Gauze Bandage,Wound Care,69,199,General Trauma / Wound,Summer,Monthly_Aggregate,5,0,0
+2026-05,C005,M005,Paracetamol 500mg,Analgesic,72,165,General Trauma / Wound,Summer,Monthly_Aggregate,5,0,0
+2026-06,C001,M001,ORS (Oral Rehydration),Rehydration,141,389,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,6,0,0
+2026-06,C001,M002,Amoxicillin Antibiotic,Antibiotic,101,277,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,6,0,0
+2026-06,C001,M003,IV Normal Saline 500ml,IV Fluid,118,274,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,6,0,0
+2026-06,C001,M004,Sterile Gauze Bandage,Wound Care,107,248,General Trauma / Wound,Summer,Monthly_Aggregate,6,0,0
+2026-06,C001,M005,Paracetamol 500mg,Analgesic,103,245,General Trauma / Wound,Summer,Monthly_Aggregate,6,0,0
+2026-06,C002,M001,ORS (Oral Rehydration),Rehydration,65,148,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,6,1,7
+2026-06,C002,M002,Amoxicillin Antibiotic,Antibiotic,48,104,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,6,1,3
+2026-06,C002,M003,IV Normal Saline 500ml,IV Fluid,73,193,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,6,1,5
+2026-06,C002,M004,Sterile Gauze Bandage,Wound Care,51,105,General Trauma / Wound,Summer,Monthly_Aggregate,6,1,8
+2026-06,C002,M005,Paracetamol 500mg,Analgesic,40,108,General Trauma / Wound,Summer,Monthly_Aggregate,6,1,7
+2026-06,C003,M001,ORS (Oral Rehydration),Rehydration,233,471,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,6,0,0
+2026-06,C003,M002,Amoxicillin Antibiotic,Antibiotic,165,424,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,6,0,0
+2026-06,C003,M003,IV Normal Saline 500ml,IV Fluid,185,579,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,6,0,0
+2026-06,C003,M004,Sterile Gauze Bandage,Wound Care,146,448,General Trauma / Wound,Summer,Monthly_Aggregate,6,0,0
+2026-06,C003,M005,Paracetamol 500mg,Analgesic,165,495,General Trauma / Wound,Summer,Monthly_Aggregate,6,0,0
+2026-06,C004,M001,ORS (Oral Rehydration),Rehydration,38,112,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,6,1,3
+2026-06,C004,M002,Amoxicillin Antibiotic,Antibiotic,31,80,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,6,1,4
+2026-06,C004,M003,IV Normal Saline 500ml,IV Fluid,43,103,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,6,1,7
+2026-06,C004,M004,Sterile Gauze Bandage,Wound Care,33,97,General Trauma / Wound,Summer,Monthly_Aggregate,6,1,7
+2026-06,C004,M005,Paracetamol 500mg,Analgesic,34,73,General Trauma / Wound,Summer,Monthly_Aggregate,6,1,6
+2026-06,C005,M001,ORS (Oral Rehydration),Rehydration,120,316,Gastroenteritis / Dehydration,Summer,Monthly_Aggregate,6,0,0
+2026-06,C005,M002,Amoxicillin Antibiotic,Antibiotic,87,243,Respiratory / Bacterial Infection,Summer,Monthly_Aggregate,6,0,0
+2026-06,C005,M003,IV Normal Saline 500ml,IV Fluid,98,205,Acute Fluid Loss / Shock,Summer,Monthly_Aggregate,6,0,0
+2026-06,C005,M004,Sterile Gauze Bandage,Wound Care,64,141,General Trauma / Wound,Summer,Monthly_Aggregate,6,0,0
+2026-06,C005,M005,Paracetamol 500mg,Analgesic,85,196,General Trauma / Wound,Summer,Monthly_Aggregate,6,0,0
+2026-07,C001,M001,ORS (Oral Rehydration),Rehydration,94,226,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C001,M002,Amoxicillin Antibiotic,Antibiotic,142,433,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C001,M003,IV Normal Saline 500ml,IV Fluid,129,323,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C001,M004,Sterile Gauze Bandage,Wound Care,124,372,General Trauma / Wound,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C001,M005,Paracetamol 500mg,Analgesic,83,171,General Trauma / Wound,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C002,M001,ORS (Oral Rehydration),Rehydration,51,160,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,7,1,3
+2026-07,C002,M002,Amoxicillin Antibiotic,Antibiotic,57,158,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,7,1,8
+2026-07,C002,M003,IV Normal Saline 500ml,IV Fluid,57,116,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,7,1,3
+2026-07,C002,M004,Sterile Gauze Bandage,Wound Care,49,106,General Trauma / Wound,Monsoon,Monthly_Aggregate,7,1,3
+2026-07,C002,M005,Paracetamol 500mg,Analgesic,50,128,General Trauma / Wound,Monsoon,Monthly_Aggregate,7,1,2
+2026-07,C003,M001,ORS (Oral Rehydration),Rehydration,141,400,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C003,M002,Amoxicillin Antibiotic,Antibiotic,191,557,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C003,M003,IV Normal Saline 500ml,IV Fluid,217,628,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C003,M004,Sterile Gauze Bandage,Wound Care,169,361,General Trauma / Wound,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C003,M005,Paracetamol 500mg,Analgesic,167,355,General Trauma / Wound,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C004,M001,ORS (Oral Rehydration),Rehydration,25,50,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,7,1,4
+2026-07,C004,M002,Amoxicillin Antibiotic,Antibiotic,34,83,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,7,1,7
+2026-07,C004,M003,IV Normal Saline 500ml,IV Fluid,39,87,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,7,1,6
+2026-07,C004,M004,Sterile Gauze Bandage,Wound Care,31,65,General Trauma / Wound,Monsoon,Monthly_Aggregate,7,1,8
+2026-07,C004,M005,Paracetamol 500mg,Analgesic,28,66,General Trauma / Wound,Monsoon,Monthly_Aggregate,7,1,7
+2026-07,C005,M001,ORS (Oral Rehydration),Rehydration,75,238,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C005,M002,Amoxicillin Antibiotic,Antibiotic,98,288,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C005,M003,IV Normal Saline 500ml,IV Fluid,99,242,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C005,M004,Sterile Gauze Bandage,Wound Care,85,221,General Trauma / Wound,Monsoon,Monthly_Aggregate,7,0,0
+2026-07,C005,M005,Paracetamol 500mg,Analgesic,70,209,General Trauma / Wound,Monsoon,Monthly_Aggregate,7,0,0
+2026-08,C001,M001,ORS (Oral Rehydration),Rehydration,116,246,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C001,M002,Amoxicillin Antibiotic,Antibiotic,147,440,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C001,M003,IV Normal Saline 500ml,IV Fluid,130,370,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C001,M004,Sterile Gauze Bandage,Wound Care,85,268,General Trauma / Wound,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C001,M005,Paracetamol 500mg,Analgesic,106,246,General Trauma / Wound,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C002,M001,ORS (Oral Rehydration),Rehydration,51,131,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,8,1,5
+2026-08,C002,M002,Amoxicillin Antibiotic,Antibiotic,56,167,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,8,1,6
+2026-08,C002,M003,IV Normal Saline 500ml,IV Fluid,65,194,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,8,1,2
+2026-08,C002,M004,Sterile Gauze Bandage,Wound Care,59,137,General Trauma / Wound,Monsoon,Monthly_Aggregate,8,1,5
+2026-08,C002,M005,Paracetamol 500mg,Analgesic,49,133,General Trauma / Wound,Monsoon,Monthly_Aggregate,8,1,5
+2026-08,C003,M001,ORS (Oral Rehydration),Rehydration,168,403,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C003,M002,Amoxicillin Antibiotic,Antibiotic,179,462,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C003,M003,IV Normal Saline 500ml,IV Fluid,204,494,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C003,M004,Sterile Gauze Bandage,Wound Care,150,407,General Trauma / Wound,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C003,M005,Paracetamol 500mg,Analgesic,163,498,General Trauma / Wound,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C004,M001,ORS (Oral Rehydration),Rehydration,29,64,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,8,1,3
+2026-08,C004,M002,Amoxicillin Antibiotic,Antibiotic,40,114,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,8,1,5
+2026-08,C004,M003,IV Normal Saline 500ml,IV Fluid,41,105,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,8,1,7
+2026-08,C004,M004,Sterile Gauze Bandage,Wound Care,31,80,General Trauma / Wound,Monsoon,Monthly_Aggregate,8,1,8
+2026-08,C004,M005,Paracetamol 500mg,Analgesic,35,86,General Trauma / Wound,Monsoon,Monthly_Aggregate,8,1,3
+2026-08,C005,M001,ORS (Oral Rehydration),Rehydration,79,187,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C005,M002,Amoxicillin Antibiotic,Antibiotic,91,239,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C005,M003,IV Normal Saline 500ml,IV Fluid,99,248,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C005,M004,Sterile Gauze Bandage,Wound Care,78,221,General Trauma / Wound,Monsoon,Monthly_Aggregate,8,0,0
+2026-08,C005,M005,Paracetamol 500mg,Analgesic,71,165,General Trauma / Wound,Monsoon,Monthly_Aggregate,8,0,0
+2026-09,C001,M001,ORS (Oral Rehydration),Rehydration,99,220,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C001,M002,Amoxicillin Antibiotic,Antibiotic,136,291,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C001,M003,IV Normal Saline 500ml,IV Fluid,112,248,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C001,M004,Sterile Gauze Bandage,Wound Care,96,216,General Trauma / Wound,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C001,M005,Paracetamol 500mg,Analgesic,84,266,General Trauma / Wound,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C002,M001,ORS (Oral Rehydration),Rehydration,50,131,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C002,M002,Amoxicillin Antibiotic,Antibiotic,63,140,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C002,M003,IV Normal Saline 500ml,IV Fluid,69,156,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C002,M004,Sterile Gauze Bandage,Wound Care,49,129,General Trauma / Wound,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C002,M005,Paracetamol 500mg,Analgesic,50,116,General Trauma / Wound,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C003,M001,ORS (Oral Rehydration),Rehydration,170,482,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C003,M002,Amoxicillin Antibiotic,Antibiotic,192,413,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C003,M003,IV Normal Saline 500ml,IV Fluid,220,670,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C003,M004,Sterile Gauze Bandage,Wound Care,138,371,General Trauma / Wound,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C003,M005,Paracetamol 500mg,Analgesic,135,299,General Trauma / Wound,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C004,M001,ORS (Oral Rehydration),Rehydration,33,68,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C004,M002,Amoxicillin Antibiotic,Antibiotic,47,140,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C004,M003,IV Normal Saline 500ml,IV Fluid,42,104,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C004,M004,Sterile Gauze Bandage,Wound Care,36,74,General Trauma / Wound,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C004,M005,Paracetamol 500mg,Analgesic,34,74,General Trauma / Wound,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C005,M001,ORS (Oral Rehydration),Rehydration,72,229,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C005,M002,Amoxicillin Antibiotic,Antibiotic,98,209,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C005,M003,IV Normal Saline 500ml,IV Fluid,107,315,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C005,M004,Sterile Gauze Bandage,Wound Care,67,152,General Trauma / Wound,Monsoon,Monthly_Aggregate,9,0,0
+2026-09,C005,M005,Paracetamol 500mg,Analgesic,69,174,General Trauma / Wound,Monsoon,Monthly_Aggregate,9,0,0
+2026-10,C001,M001,ORS (Oral Rehydration),Rehydration,98,297,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C001,M002,Amoxicillin Antibiotic,Antibiotic,141,387,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C001,M003,IV Normal Saline 500ml,IV Fluid,134,366,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C001,M004,Sterile Gauze Bandage,Wound Care,98,220,General Trauma / Wound,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C001,M005,Paracetamol 500mg,Analgesic,75,168,General Trauma / Wound,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C002,M001,ORS (Oral Rehydration),Rehydration,48,106,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C002,M002,Amoxicillin Antibiotic,Antibiotic,61,127,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C002,M003,IV Normal Saline 500ml,IV Fluid,74,200,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C002,M004,Sterile Gauze Bandage,Wound Care,49,115,General Trauma / Wound,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C002,M005,Paracetamol 500mg,Analgesic,50,142,General Trauma / Wound,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C003,M001,ORS (Oral Rehydration),Rehydration,174,442,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C003,M002,Amoxicillin Antibiotic,Antibiotic,179,527,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C003,M003,IV Normal Saline 500ml,IV Fluid,161,442,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C003,M004,Sterile Gauze Bandage,Wound Care,132,331,General Trauma / Wound,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C003,M005,Paracetamol 500mg,Analgesic,121,321,General Trauma / Wound,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C004,M001,ORS (Oral Rehydration),Rehydration,28,83,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C004,M002,Amoxicillin Antibiotic,Antibiotic,35,72,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C004,M003,IV Normal Saline 500ml,IV Fluid,46,133,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C004,M004,Sterile Gauze Bandage,Wound Care,35,93,General Trauma / Wound,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C004,M005,Paracetamol 500mg,Analgesic,32,90,General Trauma / Wound,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C005,M001,ORS (Oral Rehydration),Rehydration,82,232,Gastroenteritis / Dehydration,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C005,M002,Amoxicillin Antibiotic,Antibiotic,113,292,Respiratory / Bacterial Infection,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C005,M003,IV Normal Saline 500ml,IV Fluid,101,211,Acute Fluid Loss / Shock,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C005,M004,Sterile Gauze Bandage,Wound Care,86,205,General Trauma / Wound,Monsoon,Monthly_Aggregate,10,0,0
+2026-10,C005,M005,Paracetamol 500mg,Analgesic,80,184,General Trauma / Wound,Monsoon,Monthly_Aggregate,10,0,0
+2026-11,C001,M001,ORS (Oral Rehydration),Rehydration,121,363,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,11,0,0
+2026-11,C001,M002,Amoxicillin Antibiotic,Antibiotic,113,303,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,11,0,0
+2026-11,C001,M003,IV Normal Saline 500ml,IV Fluid,137,384,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,11,0,0
+2026-11,C001,M004,Sterile Gauze Bandage,Wound Care,88,204,General Trauma / Wound,Winter,Monthly_Aggregate,11,0,0
+2026-11,C001,M005,Paracetamol 500mg,Analgesic,116,297,General Trauma / Wound,Winter,Monthly_Aggregate,11,0,0
+2026-11,C002,M001,ORS (Oral Rehydration),Rehydration,51,141,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,11,0,0
+2026-11,C002,M002,Amoxicillin Antibiotic,Antibiotic,52,140,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,11,0,0
+2026-11,C002,M003,IV Normal Saline 500ml,IV Fluid,48,132,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,11,0,0
+2026-11,C002,M004,Sterile Gauze Bandage,Wound Care,47,113,General Trauma / Wound,Winter,Monthly_Aggregate,11,0,0
+2026-11,C002,M005,Paracetamol 500mg,Analgesic,49,117,General Trauma / Wound,Winter,Monthly_Aggregate,11,0,0
+2026-11,C003,M001,ORS (Oral Rehydration),Rehydration,136,325,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,11,0,0
+2026-11,C003,M002,Amoxicillin Antibiotic,Antibiotic,125,354,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,11,0,0
+2026-11,C003,M003,IV Normal Saline 500ml,IV Fluid,142,422,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,11,0,0
+2026-11,C003,M004,Sterile Gauze Bandage,Wound Care,186,494,General Trauma / Wound,Winter,Monthly_Aggregate,11,0,0
+2026-11,C003,M005,Paracetamol 500mg,Analgesic,138,329,General Trauma / Wound,Winter,Monthly_Aggregate,11,0,0
+2026-11,C004,M001,ORS (Oral Rehydration),Rehydration,33,104,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,11,0,0
+2026-11,C004,M002,Amoxicillin Antibiotic,Antibiotic,29,92,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,11,0,0
+2026-11,C004,M003,IV Normal Saline 500ml,IV Fluid,35,97,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,11,0,0
+2026-11,C004,M004,Sterile Gauze Bandage,Wound Care,29,64,General Trauma / Wound,Winter,Monthly_Aggregate,11,0,0
+2026-11,C004,M005,Paracetamol 500mg,Analgesic,31,75,General Trauma / Wound,Winter,Monthly_Aggregate,11,0,0
+2026-11,C005,M001,ORS (Oral Rehydration),Rehydration,78,227,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,11,0,0
+2026-11,C005,M002,Amoxicillin Antibiotic,Antibiotic,67,150,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,11,0,0
+2026-11,C005,M003,IV Normal Saline 500ml,IV Fluid,61,154,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,11,0,0
+2026-11,C005,M004,Sterile Gauze Bandage,Wound Care,72,204,General Trauma / Wound,Winter,Monthly_Aggregate,11,0,0
+2026-11,C005,M005,Paracetamol 500mg,Analgesic,93,253,General Trauma / Wound,Winter,Monthly_Aggregate,11,0,0
+2026-12,C001,M001,ORS (Oral Rehydration),Rehydration,118,269,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,12,0,0
+2026-12,C001,M002,Amoxicillin Antibiotic,Antibiotic,106,282,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,12,0,0
+2026-12,C001,M003,IV Normal Saline 500ml,IV Fluid,110,232,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,12,0,0
+2026-12,C001,M004,Sterile Gauze Bandage,Wound Care,122,311,General Trauma / Wound,Winter,Monthly_Aggregate,12,0,0
+2026-12,C001,M005,Paracetamol 500mg,Analgesic,98,209,General Trauma / Wound,Winter,Monthly_Aggregate,12,0,0
+2026-12,C002,M001,ORS (Oral Rehydration),Rehydration,52,148,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,12,0,0
+2026-12,C002,M002,Amoxicillin Antibiotic,Antibiotic,44,114,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,12,0,0
+2026-12,C002,M003,IV Normal Saline 500ml,IV Fluid,48,152,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,12,0,0
+2026-12,C002,M004,Sterile Gauze Bandage,Wound Care,58,132,General Trauma / Wound,Winter,Monthly_Aggregate,12,0,0
+2026-12,C002,M005,Paracetamol 500mg,Analgesic,44,136,General Trauma / Wound,Winter,Monthly_Aggregate,12,0,0
+2026-12,C003,M001,ORS (Oral Rehydration),Rehydration,146,381,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,12,0,0
+2026-12,C003,M002,Amoxicillin Antibiotic,Antibiotic,173,403,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,12,0,0
+2026-12,C003,M003,IV Normal Saline 500ml,IV Fluid,130,383,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,12,0,0
+2026-12,C003,M004,Sterile Gauze Bandage,Wound Care,120,313,General Trauma / Wound,Winter,Monthly_Aggregate,12,0,0
+2026-12,C003,M005,Paracetamol 500mg,Analgesic,169,504,General Trauma / Wound,Winter,Monthly_Aggregate,12,0,0
+2026-12,C004,M001,ORS (Oral Rehydration),Rehydration,32,86,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,12,0,0
+2026-12,C004,M002,Amoxicillin Antibiotic,Antibiotic,35,111,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,12,0,0
+2026-12,C004,M003,IV Normal Saline 500ml,IV Fluid,30,79,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,12,0,0
+2026-12,C004,M004,Sterile Gauze Bandage,Wound Care,32,77,General Trauma / Wound,Winter,Monthly_Aggregate,12,0,0
+2026-12,C004,M005,Paracetamol 500mg,Analgesic,28,71,General Trauma / Wound,Winter,Monthly_Aggregate,12,0,0
+2026-12,C005,M001,ORS (Oral Rehydration),Rehydration,75,178,Gastroenteritis / Dehydration,Winter,Monthly_Aggregate,12,0,0
+2026-12,C005,M002,Amoxicillin Antibiotic,Antibiotic,82,220,Respiratory / Bacterial Infection,Winter,Monthly_Aggregate,12,0,0
+2026-12,C005,M003,IV Normal Saline 500ml,IV Fluid,89,202,Acute Fluid Loss / Shock,Winter,Monthly_Aggregate,12,0,0
+2026-12,C005,M004,Sterile Gauze Bandage,Wound Care,78,225,General Trauma / Wound,Winter,Monthly_Aggregate,12,0,0
+2026-12,C005,M005,Paracetamol 500mg,Analgesic,76,216,General Trauma / Wound,Winter,Monthly_Aggregate,12,0,0

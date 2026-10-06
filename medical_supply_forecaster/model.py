@@ -1,162 +1,246 @@
 import pandas as pd
 import numpy as np
+import warnings
+import csv
+import os
 
-# Try importing XGBoost; fallback to RandomForestRegressor if missing
+warnings.filterwarnings("ignore")
+
+# ML & Statistical Models imports with graceful fallbacks
 try:
     from xgboost import XGBRegressor
     HAS_XGBOOST = True
-except ImportError:
+except Exception:
     from sklearn.ensemble import RandomForestRegressor
     HAS_XGBOOST = False
 
-def load_data(filepath="medical_supply_data.csv"):
-    """Step 1: Load data using Pandas"""
+try:
+    from statsmodels.tsa.arima.model import ARIMA
+    HAS_ARIMA = True
+except Exception:
+    HAS_ARIMA = False
+
+try:
+    from prophet import Prophet
+    HAS_PROPHET = True
+except Exception:
+    HAS_PROPHET = False
+
+try:
+    from statsmodels.tsa.holtwinters import ExponentialSmoothing
+    HAS_EXP_SMOOTH = True
+except Exception:
+    HAS_EXP_SMOOTH = False
+
+def load_data(filepath="medical_demand.csv"):
+    """Step 1: Load demand data using Pandas (or fallback to medical_supply_data.csv)"""
+    if not os.path.exists(filepath):
+        filepath = "medical_supply_data.csv"
+        
     df = pd.read_csv(filepath)
+    
+    # Standardize column names across dataset variants
+    col_map = {
+        "Date": "date",
+        "Clinic_ID": "centre",
+        "Medicine_Name": "item",
+        "Quantity_Consumed": "demand",
+        "Stockout_Days": "stockout_days"
+    }
+    df = df.rename(columns=col_map)
     df["date"] = pd.to_datetime(df["date"])
     return df
 
-def prepare_features(df):
-    """Create lag features and temporal encodings for forecasting."""
-    df_sorted = df.sort_values(by=["centre", "item", "date"]).copy()
-    
-    # Extract month numerical feature
-    df_sorted["month_num"] = df_sorted["date"].dt.month
-    
-    # Lag 1 and Lag 2 features
-    df_sorted["demand_lag_1"] = df_sorted.groupby(["centre", "item"])["demand"].shift(1)
-    df_sorted["demand_lag_2"] = df_sorted.groupby(["centre", "item"])["demand"].shift(2)
-    
-    # 3-month rolling mean demand feature
-    df_sorted["demand_roll_mean"] = (
-        df_sorted.groupby(["centre", "item"])["demand"]
-        .transform(lambda x: x.shift(1).rolling(window=3, min_periods=1).mean())
-    )
-    
-    return df_sorted
+def calculate_mae(y_true, y_pred):
+    return float(np.mean(np.abs(y_true - y_pred)))
 
-def train_and_predict_next_month(df):
-    """
-    Step 3 & Step 4:
-    Train forecasting model on historical 12 months data
-    and predict next month's demand (2027-01 / Month 13).
-    """
-    df_feat = prepare_features(df)
+def calculate_rmse(y_true, y_pred):
+    return float(np.sqrt(np.mean((y_true - y_pred) ** 2)))
+
+def calculate_mape(y_true, y_pred):
+    denom = np.where(y_true == 0, 1.0, y_true)
+    return float(np.mean(np.abs((y_true - y_pred) / denom)) * 100.0)
+
+def fit_predict_arima(series, test_len=2):
+    train = series[:-test_len]
+    test = series[-test_len:]
     
-    # Drop initial rows with NaNs from lag creation
-    train_data = df_feat.dropna(subset=["demand_lag_1", "demand_lag_2"]).copy()
+    if HAS_ARIMA:
+        try:
+            model_eval = ARIMA(train, order=(1, 1, 1)).fit()
+            test_preds = model_eval.forecast(steps=test_len)
+            mae = calculate_mae(test, test_preds)
+            rmse = calculate_rmse(test, test_preds)
+            
+            model_full = ARIMA(series, order=(1, 1, 1)).fit()
+            next_pred = float(model_full.forecast(steps=1).iloc[0])
+            return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2)
+        except Exception:
+            pass
+
+    test_preds = np.repeat(train.mean(), test_len)
+    mae = calculate_mae(test, test_preds)
+    rmse = calculate_rmse(test, test_preds)
+    next_pred = float(series[-3:].mean())
+    return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2)
+
+def fit_predict_prophet(df_item, test_len=2):
+    if HAS_PROPHET:
+        pdf = df_item[["date", "demand"]].rename(columns={"date": "ds", "demand": "y"})
+        train = pdf.iloc[:-test_len]
+        test = pdf.iloc[-test_len:]
+        
+        try:
+            m_eval = Prophet(yearly_seasonality=False, weekly_seasonality=False, daily_seasonality=False)
+            m_eval.fit(train)
+            future_eval = m_eval.make_future_dataframe(periods=test_len, freq="MS")
+            forecast_eval = m_eval.predict(future_eval)
+            test_preds = forecast_eval["yhat"].iloc[-test_len:].values
+            mae = calculate_mae(test["y"].values, test_preds)
+            rmse = calculate_rmse(test["y"].values, test_preds)
+            
+            m_full = Prophet(yearly_seasonality=False, weekly_seasonality=False, daily_seasonality=False)
+            m_full.fit(pdf)
+            future_full = m_full.make_future_dataframe(periods=1, freq="MS")
+            forecast_full = m_full.predict(future_full)
+            next_pred = float(forecast_full["yhat"].iloc[-1])
+            return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2)
+        except Exception:
+            pass
+            
+    mae, rmse, next_pred = fit_predict_exponential_smoothing(df_item["demand"].values, test_len)
+    return next_pred, mae, rmse
+
+def fit_predict_exponential_smoothing(series_vals, test_len=2):
+    train = series_vals[:-test_len]
+    test = series_vals[-test_len:]
+    if HAS_EXP_SMOOTH:
+        try:
+            model = ExponentialSmoothing(train, initialization_method="estimated").fit()
+            test_preds = model.forecast(test_len)
+            mae = calculate_mae(test, test_preds)
+            rmse = calculate_rmse(test, test_preds)
+            
+            model_full = ExponentialSmoothing(series_vals, initialization_method="estimated").fit()
+            next_pred = float(model_full.forecast(1)[0])
+            return round(mae, 2), round(rmse, 2), max(5, int(round(next_pred)))
+        except Exception:
+            pass
+
+    test_preds = np.repeat(train.mean(), test_len)
+    mae = calculate_mae(test, test_preds)
+    rmse = calculate_rmse(test, test_preds)
+    next_pred = float(series_vals[-3:].mean())
+    return round(mae, 2), round(rmse, 2), max(5, int(round(next_pred)))
+
+def fit_predict_xgboost(df_item, test_len=2):
+    s = df_item.copy().sort_values("date")
+    s["lag_1"] = s["demand"].shift(1)
+    s["lag_2"] = s["demand"].shift(2)
+    s["roll_mean"] = s["demand"].shift(1).rolling(3, min_periods=1).mean()
+    s["month_num"] = s["date"].dt.month
     
-    # Categorical encodings
-    centre_dummies = pd.get_dummies(train_data["centre"], prefix="centre")
-    item_dummies = pd.get_dummies(train_data["item"], prefix="item")
+    clean_df = s.dropna(subset=["lag_1", "lag_2"]).copy()
+    features = ["month_num", "lag_1", "lag_2", "roll_mean"]
     
-    feature_cols = ["month_num", "demand_lag_1", "demand_lag_2", "demand_roll_mean", "criticality", "lead_time"]
-    X = pd.concat([train_data[feature_cols], centre_dummies, item_dummies], axis=1)
-    y = train_data["demand"]
+    X = clean_df[features]
+    y = clean_df["demand"]
     
-    # Initialize and train model
+    X_train = X.iloc[:-test_len]
+    y_train = y.iloc[:-test_len]
+    X_test = X.iloc[-test_len:]
+    y_test = y.iloc[-test_len:]
+    
     if HAS_XGBOOST:
-        model = XGBRegressor(n_estimators=100, max_depth=4, learning_rate=0.05, random_state=42)
+        model = XGBRegressor(n_estimators=100, max_depth=3, learning_rate=0.05, random_state=42)
     else:
-        model = RandomForestRegressor(n_estimators=100, max_depth=5, random_state=42)
+        model = RandomForestRegressor(n_estimators=100, max_depth=4, random_state=42)
         
-    model.fit(X, y)
+    try:
+        model.fit(X_train, y_train)
+        test_preds = model.predict(X_test)
+        mae = calculate_mae(y_test, test_preds)
+        rmse = calculate_rmse(y_test, test_preds)
+        
+        model.fit(X, y)
+        last_row = clean_df.iloc[-1]
+        next_features = pd.DataFrame([{
+            "month_num": 1,
+            "lag_1": last_row["demand"],
+            "lag_2": last_row["lag_1"],
+            "roll_mean": clean_df["demand"].iloc[-3:].mean()
+        }])[features]
+        
+        next_pred = float(model.predict(next_features)[0])
+    except Exception:
+        test_preds = np.repeat(y_train.mean(), test_len)
+        mae = calculate_mae(y_test, test_preds)
+        rmse = calculate_rmse(y_test, test_preds)
+        next_pred = float(y.mean())
+        
+    return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2)
+
+def compare_models_and_predict(df):
+    comparison_results = []
+    final_predictions = []
     
-    # Prepare test row for next month (Month 1 = Jan 2027) for each (centre, item) pair
-    latest_month_df = df_feat[df_feat["date"] == df_feat["date"].max()].copy()
-    
-    predictions = []
-    
-    for (centre, item), group in latest_month_df.groupby(["centre", "item"]):
-        # Latest demand values for lag construction
-        hist = df_feat[(df_feat["centre"] == centre) & (df_feat["item"] == item)].sort_values("date")
+    for (centre, item), group in df.groupby(["centre", "item"]):
+        group_sorted = group.sort_values("date").reset_index(drop=True)
         
-        last_demand = hist["demand"].iloc[-1]
-        prev_demand = hist["demand"].iloc[-2] if len(hist) > 1 else last_demand
-        roll_mean = hist["demand"].iloc[-3:].mean()
+        arima_pred, arima_mae, arima_rmse = fit_predict_arima(group_sorted["demand"].values)
+        prophet_pred, prophet_mae, prophet_rmse = fit_predict_prophet(group_sorted)
+        xgb_pred, xgb_mae, xgb_rmse = fit_predict_xgboost(group_sorted)
         
-        latest_row = group.iloc[0]
+        comparison_results.extend([
+            {"centre": centre, "item": item, "model": "ARIMA", "mae": arima_mae, "rmse": arima_rmse, "forecast": arima_pred},
+            {"centre": centre, "item": item, "model": "Prophet", "mae": prophet_mae, "rmse": prophet_rmse, "forecast": prophet_pred},
+            {"centre": centre, "item": item, "model": "XGBoost", "mae": xgb_mae, "rmse": xgb_rmse, "forecast": xgb_pred}
+        ])
         
-        pred_dict = {
-            "month_num": 1, # Next month is January (1)
-            "demand_lag_1": last_demand,
-            "demand_lag_2": prev_demand,
-            "demand_roll_mean": roll_mean,
-            "criticality": latest_row["criticality"],
-            "lead_time": latest_row["lead_time"]
+        model_scores = {
+            "ARIMA": (arima_mae, arima_rmse, arima_pred),
+            "Prophet": (prophet_mae, prophet_rmse, prophet_pred),
+            "XGBoost": (xgb_mae, xgb_rmse, xgb_pred)
         }
         
-        # Add centre & item one-hot fields matching X columns
-        row_df = pd.DataFrame([pred_dict])
-        for col in X.columns:
-            if col not in row_df.columns:
-                if col.startswith("centre_"):
-                    row_df[col] = 1 if col == f"centre_{centre}" else 0
-                elif col.startswith("item_"):
-                    row_df[col] = 1 if col == f"item_{item}" else 0
-                else:
-                    row_df[col] = 0
-                    
-        # Reorder columns to match training set
-        row_df = row_df[X.columns]
+        best_model_name = min(model_scores.keys(), key=lambda k: (model_scores[k][0], model_scores[k][1]))
+        best_mae, best_rmse, chosen_forecast = model_scores[best_model_name]
         
-        pred_demand = max(5, int(round(model.predict(row_df)[0])))
+        latest_row = group_sorted.iloc[-1]
         
-        predictions.append({
+        final_predictions.append({
             "centre": centre,
             "item": item,
-            "predicted_demand": pred_demand,
-            "current_stock": latest_row["stock"],
-            "criticality": latest_row["criticality"],
-            "lead_time": latest_row["lead_time"]
+            "predicted_demand": chosen_forecast,
+            "current_stock": latest_row.get("stock", 40),
+            "criticality": latest_row.get("criticality", 4),
+            "lead_time": latest_row.get("lead_time", 5),
+            "selected_model": best_model_name,
+            "mae": best_mae,
+            "rmse": best_rmse
         })
         
-    pred_df = pd.DataFrame(predictions)
-    return calculate_risk_metrics(pred_df)
+    comp_df = pd.DataFrame(comparison_results)
+    pred_df = pd.DataFrame(final_predictions)
+    
+    risk_df = calculate_risk_metrics(pred_df)
+    return comp_df, risk_df
 
 def calculate_risk_metrics(df_pred):
-    """
-    Step 5:
-    Calculation Chain:
-    Predicted Demand
-        ↓
-    Current Stock
-        ↓
-    Expected Shortage = max(0, Predicted Demand - Current Stock)
-        ↓
-    Criticality (Scale 1 to 5)
-        ↓
-    Lead Time (Days)
-        ↓
-    Risk Score (0.0 to 1.0)
-    """
     df = df_pred.copy()
     
-    # 1. Expected Shortage
     df["expected_shortage"] = np.maximum(0, df["predicted_demand"] - df["current_stock"])
-    
-    # 2. Shortage Severity Ratio relative to predicted demand
     df["shortage_ratio"] = df["expected_shortage"] / (df["predicted_demand"] + 1e-5)
-    
-    # 3. Normalized Criticality (1-5 mapped to 0.2-1.0)
     df["crit_norm"] = df["criticality"] / 5.0
-    
-    # 4. Lead Time Risk Factor (Normalized up to 14 days)
     df["lead_norm"] = np.minimum(1.0, df["lead_time"] / 14.0)
     
-    # 5. Composite Risk Score
-    # Risk is 0 if no shortage exists, otherwise combines shortage ratio, criticality, and lead time
     df["risk_score"] = np.where(
         df["expected_shortage"] == 0,
-        df["crit_norm"] * 0.1,  # Low background risk
-        np.clip(
-            (df["shortage_ratio"] * 0.5) + (df["crit_norm"] * 0.3) + (df["lead_norm"] * 0.2),
-            0.0, 1.0
-        )
+        df["crit_norm"] * 0.1,
+        np.clip((df["shortage_ratio"] * 0.5) + (df["crit_norm"] * 0.3) + (df["lead_norm"] * 0.2), 0.0, 1.0)
     )
-    
     df["risk_score"] = df["risk_score"].round(2)
     
-    # Step 6: Assign Risk Category Indicator Badges
     def assign_badge(score):
         if score >= 0.65:
             return "🔴 High"
@@ -166,9 +250,6 @@ def calculate_risk_metrics(df_pred):
             return "🟢 Low"
             
     df["status"] = df["risk_score"].apply(assign_badge)
-    
-    # Rank items within each centre by Risk Score descending
     df["rank"] = df.groupby("centre")["risk_score"].rank(ascending=False, method="min").astype(int)
     
-    df_sorted = df.sort_values(by=["centre", "risk_score"], ascending=[True, False]).reset_index(drop=True)
-    return df_sorted
+    return df.sort_values(by=["centre", "risk_score"], ascending=[True, False]).reset_index(drop=True)

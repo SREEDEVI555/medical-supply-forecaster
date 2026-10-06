@@ -1,0 +1,7 @@
+Route_ID,Source_ID,Destination_ID,Distance_KM,Travel_Time_Minutes,Road_Condition,Accessibility_Level,Seasonal_Access,Transport_Available,Average_Delivery_Time_Days
+R001,C001,H001,55.4,75,Good,Easy,All-season,Yes,2
+R002,C001,H002,168.2,210,Good,Easy,All-season,Yes,3
+R003,C002,H001,72.8,140,Poor,Difficult,Seasonal (Monsoon Boat Only),Yes,6
+R004,C003,H001,38.1,45,Good,Easy,All-season,Yes,1
+R005,C004,H001,78.5,155,Poor,Difficult,Seasonal,No,7
+R006,C005,H001,48.0,65,Moderate,Moderate,All-season,Yes,3
