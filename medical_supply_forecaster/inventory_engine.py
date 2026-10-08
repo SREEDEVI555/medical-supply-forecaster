@@ -11,6 +11,16 @@ def load_relational_datasets(data_dir="."):
     df_access = pd.read_csv(f"{data_dir}/accessibility.csv")
     df_medicines = pd.read_csv(f"{data_dir}/medicines.csv")
     
+    # Create combined Clinic_Display (Code + Name)
+    clinic_map = dict(zip(df_clinics["Clinic_ID"], df_clinics["Clinic_Name"]))
+    
+    for df in [df_demand, df_inventory, df_referrals]:
+        if "Clinic_ID" in df.columns:
+            df["Clinic_Name"] = df["Clinic_ID"].map(clinic_map).fillna("")
+            df["Clinic_Display"] = df["Clinic_ID"] + " - " + df["Clinic_Name"]
+            
+    df_clinics["Clinic_Display"] = df_clinics["Clinic_ID"] + " - " + df_clinics["Clinic_Name"]
+    
     return df_demand, df_inventory, df_clinics, df_hospitals, df_referrals, df_access, df_medicines
 
 def compute_inventory_metrics(df_demand, df_inventory, df_access, df_medicines):
@@ -18,51 +28,41 @@ def compute_inventory_metrics(df_demand, df_inventory, df_access, df_medicines):
     Computes Safety Stock (SS), Reorder Point (ROP), Economic Order Quantity (EOQ),
     Stockout Risk, Accessibility Risk, and Replenishment Priority Score.
     """
-    # 1. Historical demand statistics per clinic and medicine
     demand_stats = df_demand.groupby(["Clinic_ID", "Medicine_ID"])["Quantity_Consumed"].agg(
         avg_monthly_demand="mean",
         std_monthly_demand="std"
     ).reset_index()
     
-    # Merge with inventory & master tables
     inv_df = pd.merge(df_inventory, demand_stats, on=["Clinic_ID", "Medicine_ID"], how="left")
     inv_df["avg_monthly_demand"] = inv_df["avg_monthly_demand"].fillna(20.0)
     inv_df["std_monthly_demand"] = inv_df["std_monthly_demand"].fillna(5.0)
     
     inv_df = pd.merge(inv_df, df_medicines[["Medicine_ID", "Medicine_Name", "Category"]], on="Medicine_ID", how="left")
     
-    # Service level Z-factor based on criticality
     crit_z = {"Critical": 2.33, "High": 1.65, "Medium": 1.28, "Low": 1.00}
     inv_df["Z_factor"] = inv_df["Criticality_Level"].map(crit_z).fillna(1.28)
     
-    # Lead time in months
     inv_df["lead_time_months"] = inv_df["Lead_Time_Days"] / 30.0
     
-    # 2. Safety Stock (SS) Formula: Z * std_d * sqrt(L_months)
     inv_df["Safety_Stock"] = (
         inv_df["Z_factor"] * inv_df["std_monthly_demand"] * np.sqrt(inv_df["lead_time_months"])
     ).fillna(5.0).round(0).astype(int)
     
-    # 3. Reorder Point (ROP) Formula: (avg_demand * lead_time_months) + Safety_Stock
     inv_df["Reorder_Point"] = (
         (inv_df["avg_monthly_demand"] * inv_df["lead_time_months"]) + inv_df["Safety_Stock"]
     ).fillna(10.0).round(0).astype(int)
     
-    # 4. Economic Order Quantity (EOQ) Formula: sqrt((2 * Annual_Demand * Ordering_Cost) / Holding_Cost)
-    ordering_cost = 50.0  # Fixed ordering setup cost
+    ordering_cost = 50.0
     inv_df["annual_demand"] = inv_df["avg_monthly_demand"] * 12.0
     inv_df["unit_holding_cost"] = np.maximum(0.5, inv_df["Unit_Cost"] * 0.20)
     
     inv_df["EOQ"] = np.sqrt(
         (2 * inv_df["annual_demand"] * ordering_cost) / inv_df["unit_holding_cost"]
     ).fillna(50.0).round(0).astype(int)
-
     
-    # 5. Stockout Risk
     inv_df["Stockout_Risk"] = np.maximum(0.0, (inv_df["Reorder_Point"] - inv_df["Current_Stock"]) / (inv_df["Reorder_Point"] + 1e-5))
     inv_df["Stockout_Risk"] = np.clip(inv_df["Stockout_Risk"], 0.0, 1.0).round(2)
     
-    # 6. Accessibility Risk calculation from accessibility.csv
     access_stats = df_access.groupby("Source_ID").agg(
         avg_distance_km=("Distance_KM", "mean"),
         avg_travel_time_min=("Travel_Time_Minutes", "mean"),
@@ -80,7 +80,6 @@ def compute_inventory_metrics(df_demand, df_inventory, df_access, df_medicines):
     inv_df = pd.merge(inv_df, access_stats[["Clinic_ID", "Accessibility_Risk"]], on="Clinic_ID", how="left")
     inv_df["Accessibility_Risk"] = inv_df["Accessibility_Risk"].fillna(0.3)
     
-    # 7. Multi-Factor Replenishment Priority Score
     crit_weight = {"Critical": 1.0, "High": 0.8, "Medium": 0.5, "Low": 0.2}
     inv_df["crit_w"] = inv_df["Criticality_Level"].map(crit_weight).fillna(0.5)
     inv_df["lead_w"] = np.minimum(1.0, inv_df["Lead_Time_Days"] / 14.0)

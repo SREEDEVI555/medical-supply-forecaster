@@ -33,13 +33,11 @@ except Exception:
     HAS_EXP_SMOOTH = False
 
 def load_data(filepath="medical_demand.csv"):
-    """Step 1: Load demand data using Pandas (or fallback to medical_supply_data.csv)"""
     if not os.path.exists(filepath):
         filepath = "medical_supply_data.csv"
         
     df = pd.read_csv(filepath)
     
-    # Standardize column names across dataset variants
     col_map = {
         "Date": "date",
         "Clinic_ID": "centre",
@@ -48,6 +46,15 @@ def load_data(filepath="medical_demand.csv"):
         "Stockout_Days": "stockout_days"
     }
     df = df.rename(columns=col_map)
+    
+    if os.path.exists("clinics.csv"):
+        df_c = pd.read_csv("clinics.csv")
+        cmap = dict(zip(df_c["Clinic_ID"], df_c["Clinic_Name"]))
+        if "centre" in df.columns:
+            df["centre_name"] = df["centre"].map(cmap).fillna("")
+            df["centre_display"] = df["centre"] + " - " + df["centre_name"]
+            df["centre"] = df["centre_display"]
+            
     df["date"] = pd.to_datetime(df["date"])
     return df
 
@@ -71,18 +78,20 @@ def fit_predict_arima(series, test_len=2):
             test_preds = model_eval.forecast(steps=test_len)
             mae = calculate_mae(test, test_preds)
             rmse = calculate_rmse(test, test_preds)
+            mape = calculate_mape(test, test_preds)
             
             model_full = ARIMA(series, order=(1, 1, 1)).fit()
             next_pred = float(model_full.forecast(steps=1).iloc[0])
-            return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2)
+            return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2), round(mape, 2)
         except Exception:
             pass
 
     test_preds = np.repeat(train.mean(), test_len)
     mae = calculate_mae(test, test_preds)
     rmse = calculate_rmse(test, test_preds)
+    mape = calculate_mape(test, test_preds)
     next_pred = float(series[-3:].mean())
-    return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2)
+    return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2), round(mape, 2)
 
 def fit_predict_prophet(df_item, test_len=2):
     if HAS_PROPHET:
@@ -98,18 +107,19 @@ def fit_predict_prophet(df_item, test_len=2):
             test_preds = forecast_eval["yhat"].iloc[-test_len:].values
             mae = calculate_mae(test["y"].values, test_preds)
             rmse = calculate_rmse(test["y"].values, test_preds)
+            mape = calculate_mape(test["y"].values, test_preds)
             
             m_full = Prophet(yearly_seasonality=False, weekly_seasonality=False, daily_seasonality=False)
             m_full.fit(pdf)
             future_full = m_full.make_future_dataframe(periods=1, freq="MS")
             forecast_full = m_full.predict(future_full)
             next_pred = float(forecast_full["yhat"].iloc[-1])
-            return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2)
+            return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2), round(mape, 2)
         except Exception:
             pass
             
-    mae, rmse, next_pred = fit_predict_exponential_smoothing(df_item["demand"].values, test_len)
-    return next_pred, mae, rmse
+    mae, rmse, mape, next_pred = fit_predict_exponential_smoothing(df_item["demand"].values, test_len)
+    return next_pred, mae, rmse, mape
 
 def fit_predict_exponential_smoothing(series_vals, test_len=2):
     train = series_vals[:-test_len]
@@ -120,18 +130,20 @@ def fit_predict_exponential_smoothing(series_vals, test_len=2):
             test_preds = model.forecast(test_len)
             mae = calculate_mae(test, test_preds)
             rmse = calculate_rmse(test, test_preds)
+            mape = calculate_mape(test, test_preds)
             
             model_full = ExponentialSmoothing(series_vals, initialization_method="estimated").fit()
             next_pred = float(model_full.forecast(1)[0])
-            return round(mae, 2), round(rmse, 2), max(5, int(round(next_pred)))
+            return round(mae, 2), round(rmse, 2), round(mape, 2), max(5, int(round(next_pred)))
         except Exception:
             pass
 
     test_preds = np.repeat(train.mean(), test_len)
     mae = calculate_mae(test, test_preds)
     rmse = calculate_rmse(test, test_preds)
+    mape = calculate_mape(test, test_preds)
     next_pred = float(series_vals[-3:].mean())
-    return round(mae, 2), round(rmse, 2), max(5, int(round(next_pred)))
+    return round(mae, 2), round(rmse, 2), round(mape, 2), max(5, int(round(next_pred)))
 
 def fit_predict_xgboost(df_item, test_len=2):
     s = df_item.copy().sort_values("date")
@@ -161,6 +173,7 @@ def fit_predict_xgboost(df_item, test_len=2):
         test_preds = model.predict(X_test)
         mae = calculate_mae(y_test, test_preds)
         rmse = calculate_rmse(y_test, test_preds)
+        mape = calculate_mape(y_test, test_preds)
         
         model.fit(X, y)
         last_row = clean_df.iloc[-1]
@@ -176,9 +189,10 @@ def fit_predict_xgboost(df_item, test_len=2):
         test_preds = np.repeat(y_train.mean(), test_len)
         mae = calculate_mae(y_test, test_preds)
         rmse = calculate_rmse(y_test, test_preds)
+        mape = calculate_mape(y_test, test_preds)
         next_pred = float(y.mean())
         
-    return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2)
+    return max(5, int(round(next_pred))), round(mae, 2), round(rmse, 2), round(mape, 2)
 
 def compare_models_and_predict(df):
     comparison_results = []
@@ -187,24 +201,24 @@ def compare_models_and_predict(df):
     for (centre, item), group in df.groupby(["centre", "item"]):
         group_sorted = group.sort_values("date").reset_index(drop=True)
         
-        arima_pred, arima_mae, arima_rmse = fit_predict_arima(group_sorted["demand"].values)
-        prophet_pred, prophet_mae, prophet_rmse = fit_predict_prophet(group_sorted)
-        xgb_pred, xgb_mae, xgb_rmse = fit_predict_xgboost(group_sorted)
+        arima_pred, arima_mae, arima_rmse, arima_mape = fit_predict_arima(group_sorted["demand"].values)
+        prophet_pred, prophet_mae, prophet_rmse, prophet_mape = fit_predict_prophet(group_sorted)
+        xgb_pred, xgb_mae, xgb_rmse, xgb_mape = fit_predict_xgboost(group_sorted)
         
         comparison_results.extend([
-            {"centre": centre, "item": item, "model": "ARIMA", "mae": arima_mae, "rmse": arima_rmse, "forecast": arima_pred},
-            {"centre": centre, "item": item, "model": "Prophet", "mae": prophet_mae, "rmse": prophet_rmse, "forecast": prophet_pred},
-            {"centre": centre, "item": item, "model": "XGBoost", "mae": xgb_mae, "rmse": xgb_rmse, "forecast": xgb_pred}
+            {"centre": centre, "item": item, "model": "ARIMA", "mae": arima_mae, "rmse": arima_rmse, "mape": arima_mape, "forecast": arima_pred},
+            {"centre": centre, "item": item, "model": "Prophet", "mae": prophet_mae, "rmse": prophet_rmse, "mape": prophet_mape, "forecast": prophet_pred},
+            {"centre": centre, "item": item, "model": "XGBoost", "mae": xgb_mae, "rmse": xgb_rmse, "mape": xgb_mape, "forecast": xgb_pred}
         ])
         
         model_scores = {
-            "ARIMA": (arima_mae, arima_rmse, arima_pred),
-            "Prophet": (prophet_mae, prophet_rmse, prophet_pred),
-            "XGBoost": (xgb_mae, xgb_rmse, xgb_pred)
+            "ARIMA": (arima_mae, arima_rmse, arima_mape, arima_pred),
+            "Prophet": (prophet_mae, prophet_rmse, prophet_mape, prophet_pred),
+            "XGBoost": (xgb_mae, xgb_rmse, xgb_mape, xgb_pred)
         }
         
         best_model_name = min(model_scores.keys(), key=lambda k: (model_scores[k][0], model_scores[k][1]))
-        best_mae, best_rmse, chosen_forecast = model_scores[best_model_name]
+        best_mae, best_rmse, best_mape, chosen_forecast = model_scores[best_model_name]
         
         latest_row = group_sorted.iloc[-1]
         
@@ -217,7 +231,8 @@ def compare_models_and_predict(df):
             "lead_time": latest_row.get("lead_time", 5),
             "selected_model": best_model_name,
             "mae": best_mae,
-            "rmse": best_rmse
+            "rmse": best_rmse,
+            "mape": best_mape
         })
         
     comp_df = pd.DataFrame(comparison_results)
@@ -243,11 +258,11 @@ def calculate_risk_metrics(df_pred):
     
     def assign_badge(score):
         if score >= 0.65:
-            return "🔴 High"
+            return "High"
         elif score >= 0.40:
-            return "🟡 Medium"
+            return "Medium"
         else:
-            return "🟢 Low"
+            return "Low"
             
     df["status"] = df["risk_score"].apply(assign_badge)
     df["rank"] = df.groupby("centre")["risk_score"].rank(ascending=False, method="min").astype(int)

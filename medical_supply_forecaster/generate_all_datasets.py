@@ -102,7 +102,7 @@ def generate_full_system_datasets(output_dir="."):
         writer.writerows(hospitals)
 
     # -------------------------------------------------------------
-    # 4. ACCESSIBILITY & TRANSPORTATION DATASET (accessibility.csv)
+    # 4. ACCESSIBILITY DATASET (accessibility.csv)
     # -------------------------------------------------------------
     accessibility = [
         {"Route_ID": "R001", "Source_ID": "C001", "Destination_ID": "H001", "Distance_KM": 55.4, "Travel_Time_Minutes": 75, "Road_Condition": "Good", "Accessibility_Level": "Easy", "Seasonal_Access": "All-season", "Transport_Available": "Yes", "Average_Delivery_Time_Days": 2},
@@ -162,11 +162,10 @@ def generate_full_system_datasets(output_dir="."):
         writer.writerows(inventory_rows)
 
     # -------------------------------------------------------------
-    # 6. MEDICAL DEMAND DATASET (medical_demand.csv) -> 210 Rows (150+ Requirement)
+    # 6. MEDICAL DEMAND DATASET (medical_demand.csv) -> 420 Rows (ALL 7 MEDICINES x 5 CLINICS x 12 MONTHS)
     # -------------------------------------------------------------
     demand_rows = []
     dates = [f"2026-{m:02d}" for m in range(1, 13)]
-    core_meds = [m for m in medicines if m["Medicine_ID"] in ["M001", "M002", "M003", "M004", "M005"]]
     
     for date_str in dates:
         month_num = int(date_str.split("-")[1])
@@ -176,7 +175,7 @@ def generate_full_system_datasets(output_dir="."):
             cid = c["Clinic_ID"]
             c_scale = c["Population_Served"] / 10000.0
             
-            for m in core_meds:
+            for m in medicines:  # Include ALL 7 medicines!
                 mid = m["Medicine_ID"]
                 mname = m["Medicine_Name"]
                 mcat = m["Category"]
@@ -188,14 +187,22 @@ def generate_full_system_datasets(output_dir="."):
                     base_demand *= 1.3
                 elif mcat == "IV Fluid" and season in ["Summer", "Monsoon"]:
                     base_demand *= 1.35
+                elif mcat == "Diagnostic Device":
+                    base_demand = 18 * c_scale
+                elif mcat == "Antidote":
+                    base_demand = 12 * c_scale
                     
-                noise = random.gauss(0, base_demand * 0.1)
-                qty_consumed = max(10, int(base_demand + noise))
-                patient_count = int(qty_consumed * random.uniform(2.0, 3.2))
+                noise = random.gauss(0, max(2.0, base_demand * 0.1))
+                qty_consumed = max(5, int(base_demand + noise))
+                patient_count = int(qty_consumed * random.uniform(1.8, 3.2))
                 
                 condition_cat = "Gastroenteritis / Dehydration" if mcat == "Rehydration" else (
                     "Respiratory / Bacterial Infection" if mcat == "Antibiotic" else (
-                        "Acute Fluid Loss / Shock" if mcat == "IV Fluid" else "General Trauma / Wound"
+                        "Acute Fluid Loss / Shock" if mcat == "IV Fluid" else (
+                            "Diagnostic Triage" if mcat == "Diagnostic Device" else (
+                                "Toxicology / Envenomation" if mcat == "Antidote" else "General Trauma / Wound"
+                            )
+                        )
                     )
                 )
                 
@@ -270,8 +277,7 @@ def generate_full_system_datasets(output_dir="."):
         writer.writeheader()
         writer.writerows(referral_rows)
         
-    print(f"Generated 7 relational datasets (200+ records) in '{output_dir}'.")
-
+    print(f"Generated 7 relational datasets (420 demand records) in '{output_dir}'.")
 
 if __name__ == "__main__":
     generate_full_system_datasets(".")
