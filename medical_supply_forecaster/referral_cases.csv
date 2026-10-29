@@ -1,51 +1,51 @@
 Case_ID,Clinic_ID,Age_Group,Condition_Category,Urgency_Level,Required_Service,Required_Diagnostic,Local_Capability,Referral_Required,Referral_Date,Recommended_Hospital_ID,Referral_Outcome
-R001,C005,Elderly,General Medical Condition,High,Basic Care,Basic X-Ray,Yes,No,2026-09-19,None (Local Care),Treated Locally
-R002,C003,Elderly,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-22,H002,Successful Transfer
-R003,C001,Elderly,General Medical Condition,Low,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-08,H001,Successful Transfer
-R004,C002,Child,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-09-22,None (Local Care),Treated Locally
-R005,C003,Adult,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-09-12,None (Local Care),Treated Locally
-R006,C001,Adult,General Medical Condition,High,Basic Care,Basic X-Ray,Yes,No,2026-09-14,None (Local Care),Treated Locally
-R007,C003,Elderly,Acute Trauma / Critical Care,High,ICU Care,Basic X-Ray,No,Yes,2026-09-06,H001,Successful Transfer
-R008,C004,Child,Acute Trauma / Critical Care,Low,Surgery,Basic X-Ray,No,Yes,2026-10-03,H001,Successful Transfer
-R009,C004,Child,General Medical Condition,Low,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-09-18,H001,Successful Transfer
-R010,C001,Adult,Acute Trauma / Critical Care,High,Surgery,Basic X-Ray,No,Yes,2026-09-24,H001,Successful Transfer
-R011,C004,Elderly,General Medical Condition,Low,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-09-26,H001,Successful Transfer
-R012,C003,Elderly,General Medical Condition,Low,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-29,H001,Successful Transfer
-R013,C002,Child,Acute Trauma / Critical Care,Emergency,ICU Care,Basic X-Ray,No,Yes,2026-09-24,H002,Successful Transfer
-R014,C005,Adult,Acute Trauma / Critical Care,High,Surgery,Basic X-Ray,No,Yes,2026-09-17,H001,Successful Transfer
-R015,C002,Elderly,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-16,H002,Successful Transfer
-R016,C005,Elderly,General Medical Condition,Low,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-09,H001,Successful Transfer
-R017,C003,Adult,Acute Trauma / Critical Care,Low,ICU Care,Basic X-Ray,No,Yes,2026-09-13,H001,Successful Transfer
-R018,C003,Child,General Medical Condition,High,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-09-30,H001,Successful Transfer
-R019,C002,Child,Acute Trauma / Critical Care,Emergency,Surgery,Basic X-Ray,No,Yes,2026-09-12,H002,Successful Transfer
-R020,C001,Child,General Medical Condition,Low,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-23,H001,Successful Transfer
-R021,C004,Child,General Medical Condition,Emergency,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-09-24,H002,Successful Transfer
-R022,C003,Elderly,General Medical Condition,High,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-03,H001,Successful Transfer
-R023,C001,Elderly,Acute Trauma / Critical Care,Medium,ICU Care,Basic X-Ray,No,Yes,2026-10-04,H001,Successful Transfer
-R024,C001,Elderly,General Medical Condition,High,Basic Care,Basic X-Ray,Yes,No,2026-09-22,None (Local Care),Treated Locally
-R025,C004,Adult,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-09-29,None (Local Care),Treated Locally
-R026,C005,Adult,General Medical Condition,Low,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-10-02,H001,Successful Transfer
-R027,C003,Elderly,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-26,H002,Successful Transfer
-R028,C001,Elderly,General Medical Condition,Medium,Basic Care,Basic X-Ray,Yes,No,2026-10-04,None (Local Care),Treated Locally
-R029,C001,Child,General Medical Condition,Medium,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-09-11,H001,Successful Transfer
-R030,C002,Adult,General Medical Condition,High,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-10-02,H001,Successful Transfer
-R031,C001,Child,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-10-01,None (Local Care),Treated Locally
-R032,C004,Elderly,General Medical Condition,Medium,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-09,H001,Successful Transfer
-R033,C003,Elderly,General Medical Condition,Low,Basic Care,Basic X-Ray,Yes,No,2026-10-04,None (Local Care),Treated Locally
-R034,C004,Child,General Medical Condition,Low,Basic Care,Basic X-Ray,Yes,No,2026-09-08,None (Local Care),Treated Locally
-R035,C003,Adult,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-13,H002,Successful Transfer
-R036,C004,Adult,Acute Trauma / Critical Care,High,Surgery,Basic X-Ray,No,Yes,2026-10-05,H001,Successful Transfer
-R037,C003,Adult,General Medical Condition,Medium,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-09,H001,Successful Transfer
-R038,C003,Child,General Medical Condition,Low,Basic Care,Basic X-Ray,Yes,No,2026-09-28,None (Local Care),Treated Locally
-R039,C004,Child,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-23,H002,Successful Transfer
-R040,C003,Adult,Acute Trauma / Critical Care,High,ICU Care,Basic X-Ray,No,Yes,2026-09-11,H001,Successful Transfer
-R041,C002,Elderly,General Medical Condition,Low,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-02,H001,Successful Transfer
-R042,C005,Adult,General Medical Condition,Medium,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-09-12,H001,Successful Transfer
-R043,C002,Child,Acute Trauma / Critical Care,Medium,Surgery,Basic X-Ray,No,Yes,2026-09-27,H001,Successful Transfer
-R044,C002,Child,General Medical Condition,Medium,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-11,H001,Successful Transfer
-R045,C001,Adult,General Medical Condition,Medium,Basic Care,Basic X-Ray,Yes,No,2026-09-11,None (Local Care),Treated Locally
-R046,C005,Elderly,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-15,H002,Successful Transfer
-R047,C005,Child,General Medical Condition,High,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-09-21,H001,Successful Transfer
-R048,C001,Elderly,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-09-26,None (Local Care),Treated Locally
-R049,C003,Elderly,General Medical Condition,Low,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-10-03,H001,Successful Transfer
-R050,C003,Child,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-10-04,None (Local Care),Treated Locally
+R001,C002,Child,Acute Trauma / Critical Care,Low,Surgery,Basic X-Ray,No,Yes,2026-10-16,H001,Successful Transfer
+R002,C003,Adult,General Medical Condition,Medium,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-16,H001,Successful Transfer
+R003,C002,Child,Acute Trauma / Critical Care,High,Surgery,Basic X-Ray,No,Yes,2026-09-23,H001,Successful Transfer
+R004,C004,Adult,Acute Trauma / Critical Care,Low,Surgery,Basic X-Ray,No,Yes,2026-10-02,H001,Successful Transfer
+R005,C003,Elderly,General Medical Condition,Low,Basic Care,Basic X-Ray,Yes,No,2026-10-09,None (Local Care),Treated Locally
+R006,C005,Adult,General Medical Condition,Low,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-02,H001,Successful Transfer
+R007,C001,Adult,General Medical Condition,Low,Basic Care,Basic X-Ray,Yes,No,2026-10-03,None (Local Care),Treated Locally
+R008,C001,Child,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-09-18,None (Local Care),Treated Locally
+R009,C001,Child,General Medical Condition,High,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-14,H001,Successful Transfer
+R010,C002,Elderly,General Medical Condition,High,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-28,H001,Successful Transfer
+R011,C005,Elderly,General Medical Condition,High,Basic Care,Basic X-Ray,Yes,No,2026-09-30,None (Local Care),Treated Locally
+R012,C003,Elderly,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-03,H002,Successful Transfer
+R013,C001,Elderly,General Medical Condition,Low,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-19,H001,Successful Transfer
+R014,C002,Child,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-10-03,None (Local Care),Treated Locally
+R015,C003,Adult,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-09-23,None (Local Care),Treated Locally
+R016,C001,Adult,General Medical Condition,High,Basic Care,Basic X-Ray,Yes,No,2026-09-25,None (Local Care),Treated Locally
+R017,C003,Elderly,Acute Trauma / Critical Care,High,ICU Care,Basic X-Ray,No,Yes,2026-09-17,H001,Successful Transfer
+R018,C004,Child,Acute Trauma / Critical Care,Low,Surgery,Basic X-Ray,No,Yes,2026-10-14,H001,Successful Transfer
+R019,C004,Child,General Medical Condition,Low,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-09-29,H001,Successful Transfer
+R020,C001,Adult,Acute Trauma / Critical Care,High,Surgery,Basic X-Ray,No,Yes,2026-10-05,H001,Successful Transfer
+R021,C004,Elderly,General Medical Condition,Low,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-10-07,H001,Successful Transfer
+R022,C003,Elderly,General Medical Condition,Low,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-10,H001,Successful Transfer
+R023,C002,Child,Acute Trauma / Critical Care,Emergency,ICU Care,Basic X-Ray,No,Yes,2026-10-05,H002,Successful Transfer
+R024,C005,Adult,Acute Trauma / Critical Care,High,Surgery,Basic X-Ray,No,Yes,2026-09-28,H001,Successful Transfer
+R025,C002,Elderly,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-27,H002,Successful Transfer
+R026,C005,Elderly,General Medical Condition,Low,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-20,H001,Successful Transfer
+R027,C003,Adult,Acute Trauma / Critical Care,Low,ICU Care,Basic X-Ray,No,Yes,2026-09-24,H001,Successful Transfer
+R028,C003,Child,General Medical Condition,High,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-10-11,H001,Successful Transfer
+R029,C002,Child,Acute Trauma / Critical Care,Emergency,Surgery,Basic X-Ray,No,Yes,2026-09-23,H002,Successful Transfer
+R030,C001,Child,General Medical Condition,Low,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-04,H001,Successful Transfer
+R031,C004,Child,General Medical Condition,Emergency,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-10-05,H002,Successful Transfer
+R032,C003,Elderly,General Medical Condition,High,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-14,H001,Successful Transfer
+R033,C001,Elderly,Acute Trauma / Critical Care,Medium,ICU Care,Basic X-Ray,No,Yes,2026-10-15,H001,Successful Transfer
+R034,C001,Elderly,General Medical Condition,High,Basic Care,Basic X-Ray,Yes,No,2026-10-03,None (Local Care),Treated Locally
+R035,C004,Adult,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-10-10,None (Local Care),Treated Locally
+R036,C005,Adult,General Medical Condition,Low,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-10-13,H001,Successful Transfer
+R037,C003,Elderly,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-07,H002,Successful Transfer
+R038,C001,Elderly,General Medical Condition,Medium,Basic Care,Basic X-Ray,Yes,No,2026-10-15,None (Local Care),Treated Locally
+R039,C001,Child,General Medical Condition,Medium,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-09-22,H001,Successful Transfer
+R040,C002,Adult,General Medical Condition,High,Advanced Diagnostics,CT Scan / Bio-Lab,No,Yes,2026-10-13,H001,Successful Transfer
+R041,C001,Child,General Medical Condition,Emergency,Basic Care,Basic X-Ray,Yes,No,2026-10-12,None (Local Care),Treated Locally
+R042,C004,Elderly,General Medical Condition,Medium,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-20,H001,Successful Transfer
+R043,C003,Elderly,General Medical Condition,Low,Basic Care,Basic X-Ray,Yes,No,2026-10-15,None (Local Care),Treated Locally
+R044,C004,Child,General Medical Condition,Low,Basic Care,Basic X-Ray,Yes,No,2026-09-19,None (Local Care),Treated Locally
+R045,C003,Adult,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-24,H002,Successful Transfer
+R046,C004,Adult,Acute Trauma / Critical Care,High,Surgery,Basic X-Ray,No,Yes,2026-10-16,H001,Successful Transfer
+R047,C003,Adult,General Medical Condition,Medium,Antivenom Administration,Basic X-Ray,No,Yes,2026-09-20,H001,Successful Transfer
+R048,C003,Child,General Medical Condition,Low,Basic Care,Basic X-Ray,Yes,No,2026-10-09,None (Local Care),Treated Locally
+R049,C004,Child,General Medical Condition,Emergency,Antivenom Administration,Basic X-Ray,No,Yes,2026-10-04,H002,Successful Transfer
+R050,C003,Adult,Acute Trauma / Critical Care,High,ICU Care,Basic X-Ray,No,Yes,2026-09-22,H001,Successful Transfer

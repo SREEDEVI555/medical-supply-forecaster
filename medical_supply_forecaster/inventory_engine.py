@@ -91,14 +91,15 @@ def compute_inventory_metrics(df_demand, df_inventory, df_access, df_medicines):
         (inv_df["Accessibility_Risk"] * 0.15)
     ).round(2)
     
-    def assign_priority_badge(score):
-        if score >= 0.65:
+    def assign_priority_badge(row):
+        score = row["Replenishment_Priority_Score"]
+        if score >= 0.60 or (row["Current_Stock"] <= row["Safety_Stock"] and row["Criticality_Level"] in ["Critical", "High"]):
             return "🔴 URGENT REPLENISHMENT"
-        elif score >= 0.45:
+        elif score >= 0.40 or row["Current_Stock"] <= row["Reorder_Point"]:
             return "🟡 HIGH PRIORITY"
         else:
             return "🟢 NORMAL"
             
-    inv_df["Priority_Badge"] = inv_df["Replenishment_Priority_Score"].apply(assign_priority_badge)
+    inv_df["Priority_Badge"] = inv_df.apply(assign_priority_badge, axis=1)
     
     return inv_df.sort_values("Replenishment_Priority_Score", ascending=False).reset_index(drop=True)

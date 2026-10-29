@@ -118,51 +118,7 @@ def generate_full_system_datasets(output_dir="."):
         writer.writerows(accessibility)
 
     # -------------------------------------------------------------
-    # 5. INVENTORY DATASET (inventory.csv)
-    # -------------------------------------------------------------
-    inventory_rows = []
-    inv_id_counter = 1
-    clinic_ids = [c["Clinic_ID"] for c in clinics]
-    medicine_ids = [m["Medicine_ID"] for m in medicines]
-    
-    for cid in clinic_ids:
-        for mid in medicine_ids:
-            med_info = next(m for m in medicines if m["Medicine_ID"] == mid)
-            crit = med_info["Criticality_Level"]
-            
-            base_capacity = 1000 if cid in ["C001", "C003"] else 400
-            current_stock = int(base_capacity * random.uniform(0.15, 0.75))
-            min_stock = int(base_capacity * 0.25)
-            max_capacity = base_capacity
-            
-            lead_time = random.choice([2, 3, 5, 7, 10]) if cid != "C004" else random.choice([7, 10, 14])
-            unit_cost = round(random.uniform(5.0, 150.0), 2)
-            
-            inventory_rows.append({
-                "Inventory_ID": f"INV{inv_id_counter:03d}",
-                "Clinic_ID": cid,
-                "Medicine_ID": mid,
-                "Current_Stock": current_stock,
-                "Minimum_Stock_Level": min_stock,
-                "Maximum_Stock_Capacity": max_capacity,
-                "Unit_Cost": unit_cost,
-                "Lead_Time_Days": lead_time,
-                "Minimum_Order_Quantity": 50,
-                "Expiry_Date": (datetime.now() + timedelta(days=random.randint(60, 500))).strftime("%Y-%m-%d"),
-                "Batch_ID": f"BAT-{random.randint(1000, 9999)}",
-                "Last_Restock_Date": (datetime.now() - timedelta(days=random.randint(10, 60))).strftime("%Y-%m-%d"),
-                "Supplier_ID": f"SUP-{random.randint(1, 4):02d}",
-                "Criticality_Level": crit
-            })
-            inv_id_counter += 1
-            
-    with open(os.path.join(output_dir, "inventory.csv"), "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(inventory_rows[0].keys()))
-        writer.writeheader()
-        writer.writerows(inventory_rows)
-
-    # -------------------------------------------------------------
-    # 6. MEDICAL DEMAND DATASET (medical_demand.csv) -> 420 Rows (ALL 7 MEDICINES x 5 CLINICS x 12 MONTHS)
+    # 5. MEDICAL DEMAND DATASET (medical_demand.csv) -> 420 Rows (ALL 7 MEDICINES x 5 CLINICS x 12 MONTHS)
     # -------------------------------------------------------------
     demand_rows = []
     dates = [f"2026-{m:02d}" for m in range(1, 13)]
@@ -229,6 +185,79 @@ def generate_full_system_datasets(output_dir="."):
         writer = csv.DictWriter(f, fieldnames=list(demand_rows[0].keys()))
         writer.writeheader()
         writer.writerows(demand_rows)
+
+    # -------------------------------------------------------------
+    # 6. INVENTORY DATASET (inventory.csv) - Calibrated to Demand & ROP
+    # -------------------------------------------------------------
+    inventory_rows = []
+    inv_id_counter = 1
+    clinic_ids = [c["Clinic_ID"] for c in clinics]
+    medicine_ids = [m["Medicine_ID"] for m in medicines]
+    
+    crit_z = {"Critical": 2.33, "High": 1.65, "Medium": 1.28, "Low": 1.00}
+    
+    for cid in clinic_ids:
+        for mid in medicine_ids:
+            med_info = next(m for m in medicines if m["Medicine_ID"] == mid)
+            crit = med_info["Criticality_Level"]
+            z = crit_z.get(crit, 1.28)
+            
+            # Compute actual demand profile for this clinic-medicine
+            med_demands = [r["Quantity_Consumed"] for r in demand_rows if r["Clinic_ID"] == cid and r["Medicine_ID"] == mid]
+            avg_dem = sum(med_demands) / len(med_demands) if med_demands else 20.0
+            variance = sum((x - avg_dem) ** 2 for x in med_demands) / max(1, len(med_demands) - 1)
+            std_dem = math.sqrt(variance) if variance > 0 else 5.0
+            
+            # Lead times: 10-14 days for remote C004, 7-10 for island C002, 2-5 for accessible clinics
+            lead_time = 14 if cid == "C004" else (7 if cid == "C002" else random.choice([2, 3, 5]))
+            lead_m = lead_time / 30.0
+            
+            ss = max(2, int(round(z * std_dem * math.sqrt(lead_m))))
+            rop = max(4, int(round(avg_dem * lead_m + ss)))
+            
+            # Realistic stock allocation:
+            # Inject realistic stockouts and urgent depletions in remote/vulnerable clinics
+            if (cid, mid) in [
+                ("C004", "M003"),  # IV Saline at Dhanushkodi (remote outpost, washed-out road)
+                ("C004", "M001"),  # ORS at Dhanushkodi
+                ("C002", "M007"),  # Antivenom at Kurusadai Island (seasonal boat-only delivery)
+                ("C002", "M006"),  # Pulse Oximeter sensor at Kurusadai Island
+                ("C001", "M003"),  # IV Saline at Rameswaram Island Sub-Centre after demand surge
+                ("C005", "M002"),  # Amoxicillin at Pamban Western Clinic
+            ]:
+                current_stock = max(1, int(rop * random.uniform(0.20, 0.35)))
+            elif (cid, mid) in [("C002", "M001"), ("C004", "M004")]:
+                current_stock = max(3, int(rop * 0.95))  # Just below / nearing ROP
+            else:
+                # Normal healthy operational buffer (1.8x ROP + ~0.5 month demand)
+                current_stock = int(round(rop * 1.8 + avg_dem * 0.5))
+                
+            min_stock = rop
+            max_capacity = max(100, int(rop * 3 + avg_dem * 2))
+            unit_cost = round(random.uniform(5.0, 150.0), 2)
+            
+            inventory_rows.append({
+                "Inventory_ID": f"INV{inv_id_counter:03d}",
+                "Clinic_ID": cid,
+                "Medicine_ID": mid,
+                "Current_Stock": current_stock,
+                "Minimum_Stock_Level": min_stock,
+                "Maximum_Stock_Capacity": max_capacity,
+                "Unit_Cost": unit_cost,
+                "Lead_Time_Days": lead_time,
+                "Minimum_Order_Quantity": 50,
+                "Expiry_Date": (datetime.now() + timedelta(days=random.randint(60, 500))).strftime("%Y-%m-%d"),
+                "Batch_ID": f"BAT-{random.randint(1000, 9999)}",
+                "Last_Restock_Date": (datetime.now() - timedelta(days=random.randint(10, 60))).strftime("%Y-%m-%d"),
+                "Supplier_ID": f"SUP-{random.randint(1, 4):02d}",
+                "Criticality_Level": crit
+            })
+            inv_id_counter += 1
+            
+    with open(os.path.join(output_dir, "inventory.csv"), "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=list(inventory_rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(inventory_rows)
 
     # -------------------------------------------------------------
     # 7. PATIENT / REFERRAL CASE DATASET (referral_cases.csv)
